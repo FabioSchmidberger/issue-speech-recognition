@@ -1,0 +1,25 @@
+(30|90|135) (°|Grad) (Seitenlagerung|SeitenLagerung) (links|rechts)	POSITIONING
+(Flachlagerung|flachLagerung)	POSITIONING
+(Rückenlagerung|RückenLagerung)	POSITIONING
+(Mikrobewegung|MicroBewegung)	POSITIONING
+(T-Lagerung|tLagerung|teeLagerung|TeeLagerung)	POSITIONING
+(V-Lagerung|VLagerung|vLagerung)	POSITIONING
+(Beinhochlagerung|BeinhochLagerung)	POSITIONING
+30 Grad Seiten Lagerung rechts	POSITIONING	TEMPERATURE
+30 (°|Grad) (links|rechts)	POSITIONING TEMPERATURE
+Rückenlage	POSITIONING
+Sitzen im Rollstuhl	POSITIONING
+Mikrobewegung	POSITIONING
+Mikrolagerung	POSITIONING
+Positionswechsel im Sitzen	POSITIONING
+Sitzen im	POSITIONING
+Hohllagerung	POSITIONING
+keine Lagerung	POSITIONING
+Bauchlage	POSITIONING
+Wasser	INGESTIBLE_FLUID_TYPE
+Tee	INGESTIBLE_FLUID_TYPE
+Saft	INGESTIBLE_FLUID_TYPE
+Kaffee	INGESTIBLE_FLUID_TYPE
+Saftschorle	INGESTIBLE_FLUID_TYPE
+Bier	INGESTIBLE_FLUID_TYPE
+Wein	INGESTIBLE_FLUID_TYPE

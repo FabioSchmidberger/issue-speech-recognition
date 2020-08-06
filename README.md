@@ -1,2 +1,8 @@
 # issue-speech-recognition
-BA
+
+
+## Speech 
+
+### Kaldi
+
+https://github.com/jcsilva/docker-kaldi-gstreamer-server
