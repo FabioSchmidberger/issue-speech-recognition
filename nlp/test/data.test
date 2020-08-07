@@ -2,12 +2,12 @@ create  O
 new     O
 issue   O
 with    O
-title   O
+title   TITLE_INTENT
 add     O
 SSO     O
 Support O
-Assign  O
-Fabio NAME
+assign  ASSIGN_INTENT
+Fabio PERSON
 add     O
 lables  LABLE_INTENT
 authentication LABLE

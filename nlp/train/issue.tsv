@@ -1,6 +1,5 @@
-Assign  O
-Fabio   NAME
-
+Assign  ASSIGN_INTENT
+Fabio   PERSON
 
 Add O
 the O
@@ -30,3 +29,108 @@ components COMPONENT_INTENT
 api COMPONENT
 frontend COMPONENT
 authentication COMPONENT
+
+for O
+components COMPONENT_INTENT
+app COMPONENT
+
+add O
+components COMPONENT_INTENT
+backend COMPONENT
+
+issue O
+with O 
+the O
+title TITLE_INTENT
+bug O
+in O
+backup O
+script O
+assign ASSIGN_INTENT
+Julia PERSON
+Roberts PERSON
+
+
+the O
+weight WEIGHT_INTENT
+is O
+8 NUMBER
+
+add O
+ios O
+support O
+for O
+nlp O
+assign ASSIGN_INTENT
+Max PERSON
+issue O
+weight WEIGHT_INTENT
+is O
+4 NUMBER
+lables LABLE_INTENT
+are O
+app LABLE
+and O
+feature LABLE
+
+improve O
+bloodsugar O
+measure O
+with O
+lables LABLE_INTENT
+feature LABLE
+
+
+redesign O
+admin O
+frontend O
+lables LABLE_INTENT
+are O
+app LABLE
+weight WEIGHT_INTENT
+is O
+1 NUMBER
+assign ASSIGN_INTENT
+Jeff PERSON
+
+New O
+issue O
+with O
+title TITLE_INTENT
+off O
+by O
+one O
+error O
+in O
+picker O
+lables LABLE_INTENT
+are O
+prio LABLE
+high LABLE
+assign ASSIGN_INTENT
+Erik PERSON
+
+assign ASSIGN_INTENT
+Peter PERSON
+
+create O
+new O
+issue O
+with O
+title TITLE_INTENT
+bug O
+in O
+database O
+binding O
+add O
+labels LABLE_INTENT
+bug LABLE
+and O
+prio LABLE
+high LABLE
+assign ASSIGN_INTENT
+Peter PERSON
+the O
+weight WEIGHT_INTENT
+is O
+4 NUMBER
