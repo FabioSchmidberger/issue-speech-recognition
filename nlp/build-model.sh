@@ -11,10 +11,10 @@ repo_root_path=$(readlink -f "${BASEDIR}/..")
 
   MODEL_RESOURCE_PATH=./corenlp/stanford-corenlp-full-2018-10-05/model
   # create model resource folder
+  rm -r "$MODEL_RESOURCE_PATH"
   mkdir -p "$MODEL_RESOURCE_PATH"
   # move model to resource folder so it can be packaged to jar
   mv ner.model.ser.gz "$MODEL_RESOURCE_PATH"
-  cp regexner.txt "$MODEL_RESOURCE_PATH"
   cp corenlp.properties "$MODEL_RESOURCE_PATH"
 )
 

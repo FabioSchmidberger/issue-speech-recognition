@@ -17,3 +17,6 @@ high LABLE
 for O
 component COMPONENT_INTENT
 api COMPONENT
+
+assign ASSIGN_INTENT
+fabio PERSON

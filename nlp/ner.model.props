@@ -6,8 +6,6 @@ testFile = ./test/data.test
 serializeTo = ner.model.ser.gz
 map = word=0,answer=1
 
-regexner.mapping = ./train/regexner.txt
-
 useClassFeature=true
 useWord=true
 useNGrams=true
