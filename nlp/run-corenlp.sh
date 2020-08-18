@@ -8,5 +8,5 @@ repo_root_path=$(readlink -f "${BASEDIR}/..")
 
   cd ${CORE_NLP_PATH}
 
-  time java -mx4g -cp "$CORE_NLP_PATH" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -serverProperties corenlp.properties -port 9000 -timeout 15000
+  time java -mx9g -cp "$CORE_NLP_PATH" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -serverProperties corenlp.properties -port 9000 -timeout 15000
 )
