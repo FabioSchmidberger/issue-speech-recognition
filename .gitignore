@@ -1,2 +1,5 @@
 nlp/corenlp/
 asr/deepspeech
+node_modules/
+*.pbmm
+*.scorer
