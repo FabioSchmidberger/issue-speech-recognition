@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import MicrophoneTest from './MicrophoneTest';
+import SpeechClass from './SpeechClass';
 import SpeechProcessing from './SpeechProcessing';
 
 const App : React.FC = () => {
@@ -9,6 +11,8 @@ const App : React.FC = () => {
       <Header>Issue Speech Recognition</Header>
       <Content>
         <SpeechProcessing></SpeechProcessing>
+        <MicrophoneTest></MicrophoneTest>
+        <SpeechClass></SpeechClass>
       </Content>
       <Footer>BA - Fabio Schmidberger</Footer>
     </AppContainer>
