@@ -4,23 +4,23 @@ Fabio   PERSON
 Add O
 the O
 lables LABLE_INTENT
-authentication LABLE
+authentication LABEL
 , O
-user LABLE
-story LABLE
+user LABEL
+story LABEL
 and O
-prio LABLE
-high LABLE
+prio LABEL
+high LABEL
 
 
-lable LABLE_INTENT
+LABEL LABLE_INTENT
 with O
-frontend LABLE
+frontend LABEL
 , O
-feature LABLE
+feature LABEL
 and O
-prio LABLE
-low LABLE
+prio LABEL
+low LABEL
 
 Create O
 issue O
@@ -69,16 +69,16 @@ is O
 4 NUMBER
 lables LABLE_INTENT
 are O
-app LABLE
+app LABEL
 and O
-feature LABLE
+feature LABEL
 
 improve O
 bloodsugar O
 measure O
 with O
 lables LABLE_INTENT
-feature LABLE
+feature LABEL
 
 
 redesign O
@@ -86,7 +86,7 @@ admin O
 frontend O
 lables LABLE_INTENT
 are O
-app LABLE
+app LABEL
 weight WEIGHT_INTENT
 is O
 1 NUMBER
@@ -105,8 +105,8 @@ in O
 picker O
 lables LABLE_INTENT
 are O
-prio LABLE
-high LABLE
+prio LABEL
+high LABEL
 assign ASSIGN_INTENT
 Erik PERSON
 
@@ -124,10 +124,10 @@ database O
 binding O
 add O
 labels LABLE_INTENT
-bug LABLE
+bug LABEL
 and O
-prio LABLE
-high LABLE
+prio LABEL
+high LABEL
 assign ASSIGN_INTENT
 Peter PERSON
 the O
