@@ -12,7 +12,7 @@ const SERVER_PORT = 4000; // websocket server port
 // const VAD_MODE = VAD.Mode.NORMAL;
 // const VAD_MODE = VAD.Mode.LOW_BITRATE;
 // const VAD_MODE = VAD.Mode.AGGRESSIVE;
-const VAD_MODE = VAD.Mode.VERY_AGGRESSIVE;
+const VAD_MODE = VAD.Mode.NORMAL;
 const vad = new VAD(VAD_MODE);
 
 function createModel(modelDir) {

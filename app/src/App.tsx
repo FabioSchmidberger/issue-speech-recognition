@@ -10,8 +10,6 @@ const App : React.FC = () => {
     <AppContainer>
       <Header>Issue Speech Recognition</Header>
       <Content>
-        <SpeechProcessing></SpeechProcessing>
-        <MicrophoneTest></MicrophoneTest>
         <SpeechClass></SpeechClass>
       </Content>
       <Footer>BA - Fabio Schmidberger</Footer>

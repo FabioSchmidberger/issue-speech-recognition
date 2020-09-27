@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import io from 'socket.io-client';
+import styled from 'styled-components';
 
 const DOWNSAMPLING_WORKER = './downsampling_worker.js';
 
@@ -11,7 +12,7 @@ class SpeechClass extends Component {
 			recording: false,
 			recordingStart: 0,
 			recordingTime: 0,
-			recognitionOutput: []
+			partialResults: []
 		};
 	}
 	
@@ -33,42 +34,48 @@ class SpeechClass extends Component {
 		
 		this.socket.on('recognize', (results) => {
 			console.log('recognized:', results);
-			const {recognitionOutput} = this.state;
+			const {partialResults} = this.state;
 			results.id = recognitionCount++;
-			recognitionOutput.unshift(results);
-			this.setState({recognitionOutput});
+			partialResults.push(results);
+			this.setState({partialResults});
 		});
 	}
 	
 	render() {
-		return (<div className="App">
-			<div>
-				<button disabled={!this.state.connected || this.state.recording} onClick={this.startRecording}>
-					Start Recording
-				</button>
-				
-				<button disabled={!this.state.recording} onClick={this.stopRecording}>
-					Stop Recording
-				</button>
-				
-				{this.renderTime()}
-			</div>
+		return (
+		<SpeechContainer>
 			{this.renderRecognitionOutput()}
-		</div>);
+			<div>
+				{!this.state.recording ? 
+					<StartButton onClick={this.startRecording}>
+					Start Recording
+				</StartButton>
+				:
+				<StopButton onClick={this.stopRecording}>
+				Stop Recording
+				</StopButton>
+				
+				}
+				
+			</div>
+		</SpeechContainer>);
 	}
 	
-	renderTime() {
-		return (<span>
-			{(Math.round(this.state.recordingTime / 100) / 10).toFixed(1)}s
-		</span>);
-	}
+	getText() {
+		const wordList = this.state.partialResults.flatMap(element => element.text);
+		console.log(wordList)
 	
+
+		return wordList.join(" ");
+		//return "Create a new issue for the component backend with the title: Add SSO Support Add the labels user story, and feature request Assign Fabio"
+	}
+
 	renderRecognitionOutput() {
-		return (<ul>
-			{this.state.recognitionOutput.map((r) => {
-				return (<li key={r.id}>{r.text}</li>);
-			})}
-		</ul>)
+		return (
+			<TextContainer>
+				{this.getText()}
+			</TextContainer>
+		)
 	}
 	
 	createAudioProcessor(audioContext, audioSource) {
@@ -176,5 +183,44 @@ class SpeechClass extends Component {
 		}
 	}
 }
+
+const Button = styled.button`
+	font-size: 15px;
+	border-width: 0px;
+  padding: 20px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
+const StartButton = styled(Button)`
+	background-color: green;
+	color: white;
+`
+
+const StopButton = styled(Button)`
+	background-color: hsl(0, 100%, 60%);
+	color: white;
+`
+
+const TextContainer = styled.div`
+	font-size: 30px;
+	padding: 50px;
+	margin: 20px;
+	width: 500px;
+	min-height: 400px;
+	line-height: 2;
+	border-radius: 20px;
+	background-color: lightgrey;
+`;
+
+const SpeechContainer = styled.div`
+	display: flex; 
+	flex-direction: column;
+	align-items: center;
+`;
+
 
 export default SpeechClass;
