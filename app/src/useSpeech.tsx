@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import io from 'socket.io-client';
+import RecordingButton from './components/RecordingButton';
 
 const DOWNSAMPLING_WORKER = './downsampling_worker.js';
 
-class App extends Component {
+class SpeechProcessing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -46,7 +47,7 @@ class App extends Component {
 				<button disabled={!this.state.connected || this.state.recording} onClick={this.startRecording}>
 					Start Recording
 				</button>
-				
+				<RecordingButton isRecording={true}></RecordingButton>
 				<button disabled={!this.state.recording} onClick={this.stopRecording}>
 					Stop Recording
 				</button>
@@ -177,4 +178,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+

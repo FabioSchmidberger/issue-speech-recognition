@@ -1,0 +1,47 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js
+
+PATH: 
+  /home/fabio/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/fabio/Android/Sdk/emulator:/home/fabio/Android/Sdk/tools:/home/fabio/Android/Sdk/tools/bin:/home/fabio/Android/Sdk/platform-too
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.18.3
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/fabio/git/uni/ba/issue-speech-recognition/deepspeech/package.json: Unexpected token } in JSON at position 535
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "web-microphone-websocket",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "deepspeech": "^0.8.0",
+      "node-vad": "^1.1.4",
+      "should": "^13.2.3",
+      "should-http": "^0.1.1",
+      "socket.io": "^2.3.0",
+      "typescript": "^4.0.3"
+    },
+    "scripts": {
+      "server": "node server.js",
+      "models": "wget https://github.com/mozilla/DeepSpeech/releases/download/v0.8.0/deepspeech-0.8.0-models.pbmm && wget https://github.com/mozilla/DeepSpeech/releases/download/v0.8.0/deepspeech-0.8.0-models.scorer"
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
