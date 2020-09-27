@@ -1,0 +1,12 @@
+version: '3'
+services:
+  api:
+    image: corenlp
+    restart: always
+    container_name: corenlp
+    build:
+        context: .
+    volumes:
+      - .:/usr/local/tomcat/webapps/corenlp
+    ports:
+      - "8080:8080"
