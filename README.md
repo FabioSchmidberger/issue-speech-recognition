@@ -2,6 +2,12 @@
 
 ## NLP
 
+### Java Project
+
+use gradle clean package to build war files
+
+http://localhost:8080/api/corenlp?text="test"
+
 ### Training Data
 
 https://nlp.stanford.edu/software/crf-faq.html

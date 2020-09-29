@@ -1,3 +1,4 @@
+import axios, {AxiosInstance} from 'axios';
 import React, {Component} from 'react';
 import io from 'socket.io-client';
 import styled from 'styled-components';
@@ -56,9 +57,22 @@ class SpeechClass extends Component {
 				</StopButton>
 				
 				}
+				<StopButton onClick={this.getNLP}>
+				Run NLP
+				</StopButton>
 				
 			</div>
 		</SpeechContainer>);
+	}
+
+	async getNLP(){
+		const baseURL="http://localhost:8080/api/corenlp"
+		const api = axios.create({baseURL})
+
+		const res = await api.get('',  {params: {
+    text: "Today Fabio will move to Paris."
+		}})
+		console.log(res)
 	}
 	
 	getText() {

@@ -24,7 +24,10 @@ const AppContainer = styled.div`
   align-items: center;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 const Header = styled.h1``;
 
