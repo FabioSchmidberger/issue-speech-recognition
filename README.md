@@ -2,6 +2,10 @@
 
 ## NLP
 
+### Cornlp
+
+https://stanfordnlp.github.io/CoreNLP/tutorials.html
+
 ### Java Project
 
 use gradle clean package to build war files
@@ -36,3 +40,4 @@ Fabio
 ### Kaldi
 
 https://github.com/jcsilva/docker-kaldi-gstreamer-server
+

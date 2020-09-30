@@ -6,14 +6,8 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
 
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreEntityMention;
@@ -30,13 +24,12 @@ public class CorenlpServelet extends HttpServlet {
 
 		String text = request.getParameter("text");
 		
-		
-		
 		Properties props = new Properties();
 	    // set the list of annotators to run
-	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,depparse,coref,kbp,quote");
+	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse");
 	    // set a property for an annotator, in this case the coref annotator is being set to use the neural algorithm
 	    props.setProperty("coref.algorithm", "neural");
+	    props.setProperty("ner.model", "/usr/local/models/ner.model.ser.gz");
 	    // build pipeline
 	    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 	    // create a document object
@@ -44,22 +37,10 @@ public class CorenlpServelet extends HttpServlet {
 	    // annnotate the document
 	    pipeline.annotate(document);
 	    // examples
-
 		
-		CoreSentence sentence = document.sentences().get(0);
-		
-		List<String> nerTags = sentence.nerTags();
-		List<String> posTags = sentence.posTags();
-		List<CoreEntityMention> entityMentions = sentence.entityMentions();
-		
-
 		if (text != null) {
-			String json = "{";
-			json += "\"nerTags\": " + new Gson().toJson(nerTags) + ",";
-			json += "\"posTags\": " + new Gson().toJson(posTags) + ",";
-			json += "\"entityMentions\": " + getEntityMentionsJson(entityMentions) + ",";
-			json += "}";
-			response.getOutputStream().println(json);
+			String jsonResult = CorenlpJsonConverter.conventCoreSentencesToJson(document.sentences());
+			response.getOutputStream().println(jsonResult);
 		} else {
 			// That person wasn't found, so return an empty JSON object. We could also
 			// return an error.
@@ -69,26 +50,4 @@ public class CorenlpServelet extends HttpServlet {
         response.addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
 	}
 
-	private String getEntityMentionsJson(List<CoreEntityMention> entityMentions) {
-		List<String> jsonEntities= new ArrayList<String>();
-		
-		for(CoreEntityMention entityMention : entityMentions) {
-			jsonEntities.add(getEntityToJson(entityMention));
-		}
-		
-		String json= new Gson().toJson(jsonEntities);
-		
-		System.out.println("JSON" + json);
-		return json;
-	}
-	
-	private String getEntityToJson(CoreEntityMention entityMention) {
-		String json = "{";
-		json += "entityType: " + entityMention.entityType() + ",";
-		json += "charOffsets: " + entityMention.charOffsets().toString() + ",";
-		json += "text: " + entityMention.text() + ",";
-		json += "}";
-		
-		return json;
-	}
 }

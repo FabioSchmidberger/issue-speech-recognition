@@ -9,13 +9,12 @@ repo_root_path=$(readlink -f "${BASEDIR}/..")
   # train model
   time java -Xmx2g -cp "$CORE_NLP_PATH" edu.stanford.nlp.ie.crf.CRFClassifier -prop ner.model.props
 
-  MODEL_RESOURCE_PATH=./corenlp/stanford-corenlp-full-2018-10-05
+  MODEL_RESOURCE_PATH=./corenlpApi/models
   # create model resource folder
   #rm -r "$MODEL_RESOURCE_PATH"
   mkdir -p "$MODEL_RESOURCE_PATH"
   # move model to resource folder so it can be packaged to jar
   mv ner.model.ser.gz "$MODEL_RESOURCE_PATH"
-  cp corenlp.properties "$MODEL_RESOURCE_PATH"
 )
 
 echo "Finished Building Model"
