@@ -35,6 +35,10 @@ https://thoughtbot.com/blog/named-entity-recognition
 Add SSO Support Add the labels user story, and feature request Assign
 Fabio
 
+
+- Change the color of the registration button in the component frontend, assign Max
+
+
 ## Speech 
 
 ### Kaldi
