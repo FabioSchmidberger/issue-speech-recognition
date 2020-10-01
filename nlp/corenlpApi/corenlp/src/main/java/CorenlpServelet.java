@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreEntityMention;
 import edu.stanford.nlp.pipeline.CoreSentence;
+import edu.stanford.nlp.pipeline.JSONOutputter;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP
 
 ;
@@ -20,7 +21,7 @@ public class CorenlpServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String text = request.getParameter("text");
 		
@@ -37,17 +38,26 @@ public class CorenlpServelet extends HttpServlet {
 	    // annnotate the document
 	    pipeline.annotate(document);
 	    // examples
+	    
+	    response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
 		
 		if (text != null) {
-			String jsonResult = CorenlpJsonConverter.conventCoreSentencesToJson(document.sentences());
+			String jsonResult="";
+			try {
+				jsonResult = new JSONOutputter().print(document.annotation());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			response.getOutputStream().println(jsonResult);
+			System.out.println(jsonResult);
 		} else {
 			// That person wasn't found, so return an empty JSON object. We could also
 			// return an error.
 			response.getOutputStream().println("{}");
 		}
-		response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
+		
 	}
 
 }

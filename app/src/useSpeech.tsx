@@ -1,98 +1,58 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import io from 'socket.io-client';
 import RecordingButton from './components/RecordingButton';
 
 const DOWNSAMPLING_WORKER = './downsampling_worker.js';
 
-class SpeechProcessing extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			connected: false,
-			recording: false,
-			recordingStart: 0,
-			recordingTime: 0,
-			recognitionOutput: []
-		};
-	}
-	
-	componentDidMount() {
-		let recognitionCount = 0;
+export function useSpeech () {
+	const [isConnected, setIsConnected] = useState(false)
+	const [isRecording, setIsRecording] = useState(false)
+	const [recognitionOutput, setRecognitionOutput] = useState("")
+	const socket = io.connect('http://192.168.178.52:4000', {});
+	let mediaStream: any;
+	let mediaStreamSource: any ;
+	let processor: any;
+	let audioContext: any;
+
+
 		
-		this.socket = io.connect('http://192.168.178.52:4000', {});
-		
-		this.socket.on('connect', () => {
-			console.log('socket connected');
-			this.setState({connected: true});
-		});
-		
-		this.socket.on('disconnect', () => {
-			console.log('socket disconnected');
-			this.setState({connected: false});
-			this.stopRecording();
-		});
-		
-		this.socket.on('recognize', (results) => {
-			console.log('recognized:', results);
-			const {recognitionOutput} = this.state;
-			results.id = recognitionCount++;
-			recognitionOutput.unshift(results);
-			this.setState({recognitionOutput});
-		});
-	}
+	socket.on('connect', () => {
+		console.log('socket connected');
+		setIsConnected(true)
+	});
 	
-	render() {
-		return (<div className="App">
-			<div>
-				<button disabled={!this.state.connected || this.state.recording} onClick={this.startRecording}>
-					Start Recording
-				</button>
-				<RecordingButton isRecording={true}></RecordingButton>
-				<button disabled={!this.state.recording} onClick={this.stopRecording}>
-					Stop Recording
-				</button>
-				
-				{this.renderTime()}
-			</div>
-			{this.renderRecognitionOutput()}
-		</div>);
-	}
+	socket.on('disconnect', () => {
+		console.log('socket disconnected');
+		setIsConnected(false)
+		stopRecording();
+	});
 	
-	renderTime() {
-		return (<span>
-			{(Math.round(this.state.recordingTime / 100) / 10).toFixed(1)}s
-		</span>);
-	}
+	socket.on('recognize', (results: any) => {
+		console.log('recognized:', results);
+		setRecognitionOutput(recognitionOutput + " " + results)
+	});
 	
-	renderRecognitionOutput() {
-		return (<ul>
-			{this.state.recognitionOutput.map((r) => {
-				return (<li key={r.id}>{r.text}</li>);
-			})}
-		</ul>)
-	}
-	
-	createAudioProcessor(audioContext, audioSource) {
-		let processor = audioContext.createScriptProcessor(4096, 1, 1);
+	const createAudioProcessor = (audioContext: any, audioSource: any) => {
+		processor = audioContext.createScriptProcessor(4096, 1, 1);
 		
 		const sampleRate = audioSource.context.sampleRate;
 		
 		let downsampler = new Worker(DOWNSAMPLING_WORKER);
 		downsampler.postMessage({command: "init", inputSampleRate: sampleRate});
 		downsampler.onmessage = (e) => {
-			if (this.socket.connected) {
-				this.socket.emit('stream-data', e.data.buffer);
+			if (socket.connected) {
+				socket.emit('stream-data', e.data.buffer);
 			}
 		};
 		
-		processor.onaudioprocess = (event) => {
+		processor.onaudioprocess = (event: any) => {
 			var data = event.inputBuffer.getChannelData(0);
 			downsampler.postMessage({command: "process", inputFrame: data});
 		};
 		
 		processor.shutdown = () => {
 			processor.disconnect();
-			this.onaudioprocess = null;
+			processor.onaudioprocess = null;
 		};
 		
 		processor.connect(audioContext.destination);
@@ -100,35 +60,25 @@ class SpeechProcessing extends Component {
 		return processor;
 	}
 	
-	startRecording = e => {
-		if (!this.state.recording) {
-			this.recordingInterval = setInterval(() => {
-				let recordingTime = new Date().getTime() - this.state.recordingStart;
-				this.setState({recordingTime});
-			}, 100);
-			
-			this.setState({
-				recording: true,
-				recordingStart: new Date().getTime(),
-				recordingTime: 0
-			}, () => {
-				this.startMicrophone();
-			});
+	const startRecording = () => {
+		if (!isRecording) {
+			setIsRecording(true)
+			startMicrophone();
 		}
 	};
 	
-	startMicrophone() {
-		this.audioContext = new AudioContext();
+	const startMicrophone= () => {
+		const audioContext = new AudioContext();
 		
-		const success = (stream) => {
+		const success = (stream: any) => {
 			console.log('started recording');
-			this.mediaStream = stream;
-			this.mediaStreamSource = this.audioContext.createMediaStreamSource(stream);
-			this.processor = this.createAudioProcessor(this.audioContext, this.mediaStreamSource);
-			this.mediaStreamSource.connect(this.processor);
+			mediaStream = stream;
+			mediaStreamSource = audioContext.createMediaStreamSource(stream);
+			processor = createAudioProcessor(audioContext, mediaStreamSource);
+			mediaStreamSource.connect(processor);
 		};
 		
-		const fail = (e) => {
+		const fail = (e: any) => {
 			console.error('recording failure', e);
 		};
 		
@@ -148,34 +98,32 @@ class SpeechProcessing extends Component {
 		}
 	}
 	
-	stopRecording = e => {
-		if (this.state.recording) {
-			if (this.socket.connected) {
-				this.socket.emit('stream-reset');
+	const stopRecording = () => {
+		if (isRecording) {
+			if (socket.connected) {
+				socket.emit('stream-reset');
 			}
-			clearInterval(this.recordingInterval);
-			this.setState({
-				recording: false
-			}, () => {
-				this.stopMicrophone();
-			});
+			setIsRecording(false);
+			stopMicrophone();
 		}
 	};
 	
-	stopMicrophone() {
-		if (this.mediaStream) {
-			this.mediaStream.getTracks()[0].stop();
+	const stopMicrophone = () => {
+		if (mediaStream) {
+			mediaStream.getTracks()[0].stop();
 		}
-		if (this.mediaStreamSource) {
-			this.mediaStreamSource.disconnect();
+		if (mediaStreamSource) {
+			mediaStreamSource.disconnect();
 		}
-		if (this.processor) {
-			this.processor.shutdown();
+		if (processor) {
+			processor.shutdown();
 		}
-		if (this.audioContext) {
-			this.audioContext.close();
+		if (audioContext) {
+			audioContext.close();
 		}
 	}
-}
+
+	return [startRecording, stopRecording]
+};
 
 

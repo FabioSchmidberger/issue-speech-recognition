@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import MicrophoneTest from './MicrophoneTest';
+import IssueCard from './IssueCard';
+import NLP from './models/NLP';
 import SpeechClass from './SpeechClass';
-import SpeechProcessing from './SpeechProcessing';
 
 const App : React.FC = () => {
+
+  const [text, setText] = useState("");
+  const [nlp, setNlp] = useState<NLP | undefined>(undefined);
+
 
   return (
     <AppContainer>
       <Header>Issue Speech Recognition</Header>
       <Content>
-        <SpeechClass></SpeechClass>
+        <SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>
+        <IssueCard text={text} nlp={nlp}/>
       </Content>
       <Footer>BA - Fabio Schmidberger</Footer>
     </AppContainer>
