@@ -6,22 +6,17 @@ import Tooltip from './Tooltip';
 
 interface Props {
   text: string;
-  nlp: NLP;
+  nlp: NLP | null;
 }
 
 const TextWithMarkings: React.FC<Props> = ({ text, nlp }) => {
-  console.log(nlp);
-
   if (!nlp || !nlp.sentences) return <TextContainer>{text}</TextContainer>;
-
-  console.log(text.split(' ').length);
 
   return (
     <NlpTextContainer>
       <>
         {nlp.sentences.map((sentence) =>
           sentence.tokens.map((token) => {
-            console.log(token);
             return (
               <TokenContainer>
                 <TokenText key={token.index} entity={token.ner}>

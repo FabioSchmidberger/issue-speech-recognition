@@ -1718,6 +1718,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-speech-recognition@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@types/react-speech-recognition/-/react-speech-recognition-3.1.0.tgz#0c214e4f8c751b9f9f32aaf1a851ee7432a080df"
+  integrity sha512-wrf1L/pSDoXQHM97CKweKfyWRSnDBuh8eK6X/NVznKMm7N5f943yJcMy97Yl1IGp7lbyGtOWxS53taZeD0Z5vQ==
+
 "@types/react@*", "@types/react@^16.9.49":
   version "16.9.49"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.49.tgz#09db021cf8089aba0cdb12a49f8021a69cce4872"
@@ -9274,6 +9279,11 @@ react-scripts@^3.4.0:
     workbox-webpack-plugin "4.3.1"
   optionalDependencies:
     fsevents "2.1.2"
+
+react-speech-recognition@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/react-speech-recognition/-/react-speech-recognition-3.2.3.tgz#974fa44c3460e5c5199aaaf601b0f3c1c34f76ec"
+  integrity sha512-xt6vVrJXZvXIp6W7dCAJTAVwNO1L0rN6BHvM3J5NkILYuhY403AkQsRb0NWSjkR6ZpaRhv7otFjD1r7x7h4HQA==
 
 react@^16.12.0:
   version "16.13.1"

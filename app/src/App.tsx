@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import IssueCard from './IssueCard';
 import NLP from './models/NLP';
 import SpeechClass from './SpeechClass';
+import WebSpeech from './WebSpeech';
 
 const App : React.FC = () => {
 
@@ -14,7 +15,8 @@ const App : React.FC = () => {
     <AppContainer>
       <Header>Issue Speech Recognition</Header>
       <Content>
-        <SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>
+        {/*<SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>*/}
+        <WebSpeech></WebSpeech>
         <IssueCard text={text} nlp={nlp}/>
       </Content>
       <Footer>BA - Fabio Schmidberger</Footer>
