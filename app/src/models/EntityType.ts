@@ -3,7 +3,7 @@ export type NoEntityType = typeof noEntityType;
 enum EntityType {
   NoEntityType = 'O',
   LABEL = 'LABEL',
-  LABLE_INTENT='LABLE_INTENT',
+  LABEL_INTENT='LABEL_INTENT',
   TITLE_INTENT= 'TITLE_INTENT',
   ASSIGN_INTENT='ASSIGN_INTENT',
   COMPONENT_INTENT='COMPONENT_INTENT',
@@ -13,10 +13,10 @@ enum EntityType {
   NUMBER='NUMBER',
 }
 
-const blue = 'hsl(188.1, 100%, 82.5%)';
+const blue = 'blue'
 const yellow = 'hsl(52, 100%, 60%)';
 const red = 'hsl(0, 100%, 40%)';
-const green = 'hsl(130, 100%, 82%)';
+const green = 'green';
 const orange = 'hsl(37, 100%, 78%)';
 const purple = 'hsl(310, 100%, 85%)';
 const black = 'black';
@@ -24,7 +24,7 @@ const black = 'black';
 export const entityColors: { [key in EntityType]: string | undefined } = {
   O: black,
   LABEL: blue,
-  LABLE_INTENT: yellow,
+  LABEL_INTENT: yellow,
   TITLE_INTENT: green,
   ASSIGN_INTENT: green,
   PERSON: red,

@@ -70,7 +70,10 @@ class SpeechClass extends Component {
 
     api
       .get('', { params: { text } })
-      .then((response) => this.setState({ nlp: response.data }))
+      .then((response) => {
+        console.log(response.data);
+        this.setState({ nlp: response.data });
+      })
       .catch((error) => {
         console.log(error);
         return {};
@@ -78,11 +81,13 @@ class SpeechClass extends Component {
   }
 
   getText() {
-    const wordList = this.state.partialResults.flatMap(element => element.text);
-    console.log(wordList)
+    const wordList = this.state.partialResults.flatMap(
+      (element) => element.text,
+    );
 
-    //return wordList.join(" ");
-    return 'Create a new issue for the component backend with the title: Add SSO Support Add the labels user story, and feature request Assign Fabio';
+    return wordList.join('. ');
+    //return 'Create a new issue for the components backend with the title: Add SSO Support Add the labels user story, and feature request Assign Fabio';
+    //return 'Change the color of the registration button in the components admin tool. assign Max';
   }
 
   createAudioProcessor(audioContext, audioSource) {
@@ -207,9 +212,10 @@ class SpeechClass extends Component {
 }
 
 const Button = styled.button`
-  font-size: 15px;
+  font-size: 20px;
   border-width: 0px;
   padding: 20px;
+  margin: 10px;
   border-radius: 5px;
   transition: transform 0.2s;
   &:active {

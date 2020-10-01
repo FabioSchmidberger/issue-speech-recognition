@@ -40,8 +40,8 @@ const SaveButton = styled.button`
   border-width: 0px;
   padding: 20px;
   border-radius: 5px;
-  background-color: hsl(200, 100%, 60%);
-  color: 'white';
+  background-color: green;
+  color: white;
   transition: transform 0.2s;
   &:active {
     transform: scale(0.98);
