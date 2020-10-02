@@ -1,28 +1,54 @@
-import React from 'react';
-import styled from "styled-components"
-import IssueElement from './IssueElement';
-import NLP from './models/NLP';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import IssueElement from './components/IssueElement';
+import Issue from './models/Issue';
 
 interface Props {
-  text: string;
-  nlp: NLP | undefined;
+  issue: Issue;
+  setIssue: (issue: Issue) => void;
 }
 
-const IssueCard: React.FC<Props> = ({text, nlp}) => {
+const IssueCard: React.FC<Props> = ({ issue, setIssue }) => {
   return (
     <IssueContainer>
       <Title>New Issue</Title>
-      <IssueElement name="Title"/>
-      <IssueElement name="Description"/>
-      <IssueElement name="Assignee"/>
-      <IssueElement name="Components"/>
-      <IssueElement name="Labels"/>
-      <IssueElement name="Weight"/>
-      {text}
+      <IssueElement
+        name="Title"
+        value={issue.title}
+        setElement={(e) => setIssue({ ...issue, title: e.target.value })}
+      />
+      <IssueElement
+        name="Description"
+        value={issue.description}
+        setElement={(e) => setIssue({ ...issue, description: e.target.value })}
+      />
+      <IssueElement
+        name="Assignee"
+        value={issue.assignee}
+        setElement={(e) => setIssue({ ...issue, assignee: e.target.value })}
+      />
+      <IssueElement
+        name="Components"
+        value={issue.components}
+        setElement={(e) => setIssue({ ...issue, components: e.target.value })}
+      />
+      <IssueElement
+        name="Labels"
+        value={issue.lables}
+        setElement={(e) => setIssue({ ...issue, lables: e.target.value })}
+      />
+      <IssueElement
+        name="Weight"
+        type="number"
+        value={issue.weight.toString()}
+        setElement={(e) =>
+          setIssue({ ...issue, weight: parseInt(e.target.value) })
+        }
+      />
       <SaveButton>Save</SaveButton>
     </IssueContainer>
-  )
-}
+  );
+};
 
 const IssueContainer = styled.div`
   padding: 50px;
@@ -33,7 +59,6 @@ const IssueContainer = styled.div`
   border-radius: 20px;
   background-color: hsl(200, 10%, 95%);
 `;
-
 
 const SaveButton = styled.button`
   font-size: 20px;
@@ -51,6 +76,18 @@ const SaveButton = styled.button`
 
 const Title = styled.div`
   font-size: 25px;
+`;
+
+const ElementContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+`;
+
+const Label = styled.div`
+  font-size: 20px;
+  padding-right: 10px;
+  width: 150px;
 `;
 
 export default IssueCard;

@@ -4,18 +4,22 @@ import SpeechRecognition, {
 } from 'react-speech-recognition';
 import styled from 'styled-components';
 import TextWithMarkings from './components/TextWithMarkings';
+import IssueCard from './IssueCard';
+import useIssueParser from './useIssueParser';
 import useNLP from './useNLP';
 
 const WebSpeech: React.FC = () => {
-  const { transcript, finalTranscript, listening, resetTranscript } = useSpeechRecognition();
+  const {
+    transcript,
+    finalTranscript,
+    resetTranscript,
+  } = useSpeechRecognition();
   const [isRecording, setIsRecording] = useState(false);
 
-  console.log("Transcript: " + transcript);
-  console.log("Final Transcript: " + finalTranscript);
+  const shouldRunNlp = !isRecording && !!finalTranscript;
+  const { nlp, resetNlp } = useNLP(transcript, shouldRunNlp);
 
-  const shouldRunNlp = !isRecording && !!transcript && transcript === finalTranscript;
-
-  const {nlp, resetNlp} = useNLP(finalTranscript, shouldRunNlp);
+  const { issue, setIssue } = useIssueParser(nlp);
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null;
@@ -31,29 +35,39 @@ const WebSpeech: React.FC = () => {
   const stopRecording = () => {
     SpeechRecognition.stopListening();
     setIsRecording(false);
-  }
+  };
 
-  const reset = () =>{
+  const reset = () => {
     resetTranscript();
     resetNlp();
-  }
+  };
 
   return (
-    <SpeechContainer>
-      <TextWithMarkings text={transcript} nlp={nlp} />
-      <div>
-        {!isRecording ? (
-          <StartButton onClick={startRecording}>Start Recording</StartButton>
-        ) : (
-          <StopButton onClick={stopRecording}>
-            Stop Recording
-          </StopButton>
-        )}
-        <StopButton onClick={reset}>Reset</StopButton>
-      </div>
-    </SpeechContainer>
+    <Content>
+      <SpeechContainer>
+        <TextWithMarkings
+          text={transcript}
+          nlp={nlp}
+          isRecording={isRecording}
+        />
+        <div>
+          {!isRecording ? (
+            <StartButton onClick={startRecording}>Start Recording</StartButton>
+          ) : (
+            <StopButton onClick={stopRecording}>Stop Recording</StopButton>
+          )}
+          <StopButton onClick={reset}>Reset</StopButton>
+        </div>
+      </SpeechContainer>
+      <IssueCard issue={issue} setIssue={setIssue} />
+    </Content>
   );
 };
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 const Button = styled.button`
   font-size: 20px;

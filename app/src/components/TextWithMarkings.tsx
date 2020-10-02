@@ -7,10 +7,12 @@ import Tooltip from './Tooltip';
 interface Props {
   text: string;
   nlp: NLP | null;
+  isRecording: boolean;
 }
 
-const TextWithMarkings: React.FC<Props> = ({ text, nlp }) => {
-  if (!nlp || !nlp.sentences) return <TextContainer>{text}</TextContainer>;
+const TextWithMarkings: React.FC<Props> = ({ text, nlp, isRecording }) => {
+  if (isRecording || !nlp || !nlp.sentences)
+    return <TextContainer>{text}</TextContainer>;
 
   return (
     <NlpTextContainer>

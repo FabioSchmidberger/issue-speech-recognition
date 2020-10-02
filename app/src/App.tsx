@@ -1,28 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import IssueCard from './IssueCard';
-import NLP from './models/NLP';
-import SpeechClass from './SpeechClass';
 import WebSpeech from './WebSpeech';
 
-const App : React.FC = () => {
-
-  const [text, setText] = useState("");
-  const [nlp, setNlp] = useState<NLP | undefined>(undefined);
-
-
+const App: React.FC = () => {
   return (
     <AppContainer>
       <Header>Issue Speech Recognition</Header>
-      <Content>
-        {/*<SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>*/}
-        <WebSpeech></WebSpeech>
-        <IssueCard text={text} nlp={nlp}/>
-      </Content>
+      {/*<SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>*/}
+      <WebSpeech />
       <Footer>BA - Fabio Schmidberger</Footer>
     </AppContainer>
-  )
-
+  );
 };
 
 const AppContainer = styled.div`
@@ -31,13 +19,10 @@ const AppContainer = styled.div`
   align-items: center;
 `;
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
 const Header = styled.h1``;
 
-const Footer = styled.div`margin-top: 100px`;
+const Footer = styled.div`
+  margin-top: 100px;
+`;
 
 export default App;

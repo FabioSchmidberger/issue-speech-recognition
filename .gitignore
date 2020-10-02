@@ -3,3 +3,4 @@ asr/deepspeech
 node_modules/
 *.pbmm
 *.scorer
+*.ser.gz

@@ -32,16 +32,13 @@ https://thoughtbot.com/blog/named-entity-recognition
 - Create Backup script for Mongo db, assign Leon
 
 - Create a new issue for the component backend with the title:
-Add SSO Support Add the labels user story, and feature request Assign
-Fabio
-
+  Add SSO Support Add the labels user story, and feature request Assign
+  Fabio
 
 - Change the color of the registration button in the component frontend, assign Max
 
-
-## Speech 
+## Speech
 
 ### Kaldi
 
 https://github.com/jcsilva/docker-kaldi-gstreamer-server
-

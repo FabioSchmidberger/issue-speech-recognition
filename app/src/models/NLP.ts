@@ -1,4 +1,4 @@
-import EntityType from "./EntityType";
+import EntityType from './EntityType';
 
 export interface Token {
   ner: EntityType;
@@ -13,7 +13,7 @@ export interface CoreEntityMention {
   ner: EntityType;
   text: string;
   characterOffsetBegin: number;
-  characterOffsetEnd: number
+  characterOffsetEnd: number;
 }
 
 export interface CoreSentence {
@@ -22,7 +22,7 @@ export interface CoreSentence {
   sentiment: string;
   text: string;
   tokens: Token[];
-  entityMentions: CoreEntityMention[];
+  entitymentions: CoreEntityMention[];
 }
 
 interface NLP {

@@ -9,22 +9,22 @@ function useNLP(text: string, isActive: boolean) {
   const api = Axios.create({ baseURL });
 
   useEffect(() => {
-    if(isActive) {
-    (async () => {
-      return api
-        .get('', { params: { text } })
-        .then((response) => {
-          console.log('NLP Response');
-          console.log(response.data);
-          setNlp(response.data)
-        })
-        .catch((error) => {
-          console.log(error);
-          return {};
-        });
-    })()
-  }
-  }, [text, api]);
+    if (isActive) {
+      (async () => {
+        return api
+          .get('', { params: { text } })
+          .then((response) => {
+            console.log('NLP Response');
+            console.log(response.data);
+            setNlp(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+            return {};
+          });
+      })();
+    }
+  }, [text, isActive]);
   return {
     nlp,
     resetNlp: () => setNlp(null),
