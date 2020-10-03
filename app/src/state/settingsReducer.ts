@@ -3,22 +3,75 @@ import { useSelector } from 'react-redux';
 import { RootState } from './rootReducer';
 
 export interface State {
-  token: string | null;
+  speechEngine: SpeechEngine;
+  issueIntegration: IssueIntegration;
+  githubOptions: GithubOptions;
 }
 
-export const initialState = {
-  token: null,
+export enum SpeechEngine {
+  GOOGLE = 'GOOGLE',
+  DEEPSPEECH = 'DEEPSPEECH',
+}
+
+export enum IssueIntegration {
+  GITHUB = 'GITHUB',
+  CCIMS = 'CCIMS',
+}
+
+export const initialState: State = {
+  speechEngine: SpeechEngine.GOOGLE,
+  issueIntegration: IssueIntegration.GITHUB,
+  githubOptions: {
+    repo: '',
+    owner: '',
+    personalAccessToken: '',
+  },
 };
+
+export interface GithubOptions {
+  repo: string;
+  owner: string;
+  personalAccessToken: string;
+}
 
 function settingsReducer(
   state: State = initialState,
   reduxAction: ReduxAnyAction,
 ) {
   switch (reduxAction.type) {
-    case 'LOGIN':
+    case 'SET_SPEECHENGINE':
       return {
         ...state,
-        token: reduxAction.token,
+        speechEngine: reduxAction.speechEngine,
+      };
+    case 'SET_ISSUEINTEGRATION':
+      return {
+        ...state,
+        issueIntegration: reduxAction.issueIntegration,
+      };
+    case 'SET_GITHUB_OPTION_REPO':
+      return {
+        ...state,
+        githubOptions: {
+          ...state.githubOptions,
+          repo: reduxAction.repo,
+        },
+      };
+    case 'SET_GITHUB_OPTION_OWNER':
+      return {
+        ...state,
+        githubOptions: {
+          ...state.githubOptions,
+          owner: reduxAction.owner,
+        },
+      };
+    case 'SET_GITHUB_OPTION_TOKEN':
+      return {
+        ...state,
+        githubOptions: {
+          ...state.githubOptions,
+          personalAccessToken: reduxAction.personalAccessToken,
+        },
       };
     default:
       return state;

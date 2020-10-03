@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import SettingsScreen from './components/SettingsScreen';
 import { useIssueElementsImporter } from './integrations/useIssueElementsImporter';
 import WebSpeech from './WebSpeech';
 
@@ -8,17 +9,31 @@ const App: React.FC = () => {
 
   return (
     <AppContainer>
-      <Header>Issue Speech Recognition</Header>
-      {/*<SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>*/}
-      <WebSpeech />
-      <Footer>BA - Fabio Schmidberger</Footer>
+      <SettingsScreen />
+      <Content>
+        <Header>Issue Speech Recognition</Header>
+
+        {/*<SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>*/}
+        <WebSpeech />
+        <Footer>BA - Fabio Schmidberger</Footer>
+      </Content>
     </AppContainer>
   );
 };
 
 const AppContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  height: 100%;
+  overflow: hidden;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex: 1;
   flex-direction: column;
+  padding: 30px;
+  overflow-y: scroll;
   align-items: center;
 `;
 

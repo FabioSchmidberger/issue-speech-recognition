@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useSettings } from '../state/settingsReducer';
 import GithubAdapter from './github';
 
 export const Adapters = {
@@ -6,5 +7,8 @@ export const Adapters = {
 };
 
 export function useIntegration() {
-  return useMemo(() => new Adapters.github(), []);
+  const { githubOptions } = useSettings();
+  return useMemo(() => {
+    return new Adapters.github(githubOptions);
+  }, []);
 }

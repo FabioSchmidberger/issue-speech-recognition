@@ -1,20 +1,26 @@
 import { Octokit } from '@octokit/rest';
 import Issue from '../models/Issue';
+import { GithubOptions } from '../state/settingsReducer';
 import AbstractIntegrationAdapter from './AbstractIntegrationAdapter';
 
-const PERSONAL_ACCESS_TOKEN = '3ab1627652c24972dc7ca525885fa9943af7733f';
-const OWNER = 'FabioSchmidberger';
-const REPO = 'se_172_enterprise_software_assignments';
-
 class GithubAdapter extends AbstractIntegrationAdapter {
-  private octokit = new Octokit({
-    auth: PERSONAL_ACCESS_TOKEN,
-  });
+  private octokit: Octokit;
+  private owner: string;
+  private repo: string;
+
+  constructor(githubOptions: GithubOptions) {
+    super();
+    this.owner = githubOptions.owner;
+    this.repo = githubOptions.repo;
+    this.octokit = new Octokit({
+      auth: githubOptions.personalAccessToken,
+    });
+  }
 
   public async createIssue(issue: Issue) {
     await this.octokit.request('POST /repos/{owner}/{repo}/issues', {
-      owner: OWNER,
-      repo: REPO,
+      owner: this.owner,
+      repo: this.repo,
       title: issue.title,
       body: this.buildIsuseBody(issue),
       labels: issue.labels,
@@ -25,19 +31,21 @@ class GithubAdapter extends AbstractIntegrationAdapter {
   public async getLabels() {
     return this.octokit.issues
       .listLabelsForRepo({
-        owner: OWNER,
-        repo: REPO,
+        owner: this.owner,
+        repo: this.repo,
       })
-      .then((response) => response.data.map((label) => label.name));
+      .then((response) => response.data.map((label) => label.name))
+      .catch((e) => console.log(e));
   }
 
   public async getAssignees() {
     return this.octokit.issues
       .listAssignees({
-        owner: OWNER,
-        repo: REPO,
+        owner: this.owner,
+        repo: this.repo,
       })
-      .then((response) => response.data.map((user) => user.login));
+      .then((response) => response.data.map((user) => user.login))
+      .catch((e) => console.log(e));
   }
 
   private buildIsuseBody(issue: Issue) {
