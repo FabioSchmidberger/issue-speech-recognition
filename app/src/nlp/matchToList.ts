@@ -10,6 +10,8 @@ function matchToList(value: string, candidates: string[]) {
 
   if (matchingCandidates.length == 0)
     return getClosestCandidate(value, candidates);
+
+  return '';
 }
 
 function getClosestCandidate(value: string, candidates: string[]) {

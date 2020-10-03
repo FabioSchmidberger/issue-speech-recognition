@@ -4,7 +4,7 @@ import AbstractIntegrationAdapter from './AbstractIntegrationAdapter';
 
 const PERSONAL_ACCESS_TOKEN = '3ab1627652c24972dc7ca525885fa9943af7733f';
 const OWNER = 'FabioSchmidberger';
-const REPO = 'issue-speech-recognition';
+const REPO = 'se_172_enterprise_software_assignments';
 
 class GithubAdapter extends AbstractIntegrationAdapter {
   private octokit = new Octokit({
@@ -23,12 +23,21 @@ class GithubAdapter extends AbstractIntegrationAdapter {
   }
 
   public async getLabels() {
-    this.octokit.issues
+    return this.octokit.issues
       .listLabelsForRepo({
         owner: OWNER,
         repo: REPO,
       })
-      .then((response) => console.log(response.data));
+      .then((response) => response.data.map((label) => label.name));
+  }
+
+  public async getAssignees() {
+    return this.octokit.issues
+      .listAssignees({
+        owner: OWNER,
+        repo: REPO,
+      })
+      .then((response) => response.data.map((user) => user.login));
   }
 
   private buildIsuseBody(issue: Issue) {

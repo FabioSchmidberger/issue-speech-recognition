@@ -13,4 +13,10 @@ describe('match To List', () => {
 
     expect('bug').toEqual(matchToList(value, candidates));
   });
+  it('similar elements should be matched', () => {
+    const candidates = ['FabioSchmidberger', 'Jake'];
+    const value = 'Fabio';
+
+    expect('FabioSchmidberger').toEqual(matchToList(value, candidates));
+  });
 });

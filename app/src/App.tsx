@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useIssueElementsImporter } from './integrations/useIssueElementsImporter';
 import WebSpeech from './WebSpeech';
 
 const App: React.FC = () => {
+  useIssueElementsImporter();
+
   return (
     <AppContainer>
       <Header>Issue Speech Recognition</Header>
