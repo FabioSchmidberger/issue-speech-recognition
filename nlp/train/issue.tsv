@@ -176,3 +176,9 @@ with O
 weight WEIGHT_INTENT
 seven NUMBER
 . O
+
+assign ASSIGN_INTENT
+it O
+to O
+Fabio PERSON
+

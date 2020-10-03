@@ -1,5 +1,5 @@
 # location of training data
-trainFileList = ./train/issue.tsv
+trainFileList = ./train/issue.tsv,./train/assignee.tsv,./train/components.tsv,./train/labels.tsv,./train/priority.tsv,./train/weight.tsv
 # location of test data
 testFile = ./test/data.test
 # where to store the saved model

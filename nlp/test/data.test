@@ -12,8 +12,9 @@ add     O
 labels  LABEL_INTENT
 authentication LABEL
 and O
-prio LABEL
-high LABEL
+prio PRIORITY_INTENT
+is O
+high PRIORITY
 for O
 component COMPONENT_INTENT
 api COMPONENT
