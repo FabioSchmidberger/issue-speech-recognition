@@ -42,3 +42,15 @@ https://thoughtbot.com/blog/named-entity-recognition
 ### Kaldi
 
 https://github.com/jcsilva/docker-kaldi-gstreamer-server
+
+## Integrations
+
+### Github
+
+https://developer.github.com/v3/issues/#create-an-issue
+
+# Issues
+
+## Lables
+
+bug, documentation, duplicate, enhancement, good first issue, help wanted, invalid, question, won't fix

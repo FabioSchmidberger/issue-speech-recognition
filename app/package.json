@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@octokit/rest": "^18.0.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -34,11 +35,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test:client": "react-scripts test --env=jsdom --watchAll=false --coverage",
-    "test:server": "NODE_ENV=dev mocha --recursive ./test/config.js ./test --exit",
-    "eject": "react-scripts eject",
-    "server": "node server.js",
-    "models": "wget https://github.com/mozilla/DeepSpeech/releases/download/v0.8.0/deepspeech-0.8.0-models.pbmm && wget https://github.com/mozilla/DeepSpeech/releases/download/v0.8.0/deepspeech-0.8.0-models.scorer"
+    "test": "jest",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -54,5 +52,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "ts-jest": "^26.4.1"
   }
 }

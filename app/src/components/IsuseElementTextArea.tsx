@@ -4,49 +4,40 @@ import styled from 'styled-components';
 interface Props {
   name: string;
   value: string;
-  setElement: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  type?: string;
+  setElement: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const IssueElement: React.FC<Props> = ({
-  name,
-  setElement,
-  value,
-  type = 'text',
-}) => {
+const IssueElementTextArea: React.FC<Props> = ({ name, setElement, value }) => {
   return (
     <ElementContainer>
       <Label>{name}</Label>
-      <Input
-        type={type}
-        name={name}
-        value={value}
-        onChange={(e) => setElement(e)}
-      />
+      <Input name={name} value={value} onChange={(e) => setElement(e)} />
     </ElementContainer>
   );
 };
 
-const Input = styled.input`
+const Input = styled.textarea`
   font-size: 20px;
-  padding: 12px 20px;
+  padding: 7px;
   border-width: 0px;
   color: black;
   background-color: white;
   border-radius: 5px;
+  width: inherit;
 `;
 
 const ElementContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 25px;
+  width: 100%;
 `;
 
 const Label = styled.div`
   font-size: 20px;
-  padding-right: 10px;
+  padding-bottom: 10px;
   width: 150px;
 `;
 
-export default IssueElement;
+export default IssueElementTextArea;

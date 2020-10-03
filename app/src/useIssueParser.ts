@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import EntityType from './models/EntityType';
-import Issue from './models/Issue';
+import Issue, { IssuePriority } from './models/Issue';
 import NLP from './models/NLP';
 
 const emptyIssue: Issue = {
-  title: '',
-  description: '',
-  lables: '',
-  components: '',
+  title: 'The titlebar should be green.',
+  body: 'Change it to our new cooperate colors.',
+  labels: ['bug', 'enhancement'],
+  components: ['login-service', 'ui-components'],
   weight: 0,
-  assignee: '',
+  assignees: ['FabioSchmidberger'],
+  priority: IssuePriority.MEDIUM,
 };
 
 function useIssueParser(nlp: NLP | null) {
@@ -31,11 +32,12 @@ function buildIssue(nlp: NLP | null): Issue {
 
   return {
     title: 'Test',
-    description: 'Description',
-    lables: getLables(nlp),
+    body: 'Description',
+    labels: getLables(nlp),
     components: getComponents(nlp),
     weight: getWeight(nlp),
-    assignee: getAssignee(nlp),
+    assignees: getAssignees(nlp),
+    priority: getPriority(nlp),
   };
 }
 
@@ -49,19 +51,24 @@ function getEntitymentions(nlp: NLP, entityType: EntityType) {
   return entityMentions;
 }
 
-function getAssignee(nlp: NLP) {
+function getAssignees(nlp: NLP) {
   const persons = getEntitymentions(nlp, EntityType.PERSON);
-  return persons.toString();
+  return persons;
+}
+
+function getPriority(nlp: NLP) {
+  const priority = getEntitymentions(nlp, EntityType.PRIORITY);
+  return IssuePriority.MEDIUM;
 }
 
 function getComponents(nlp: NLP) {
   const components = getEntitymentions(nlp, EntityType.COMPONENT);
-  return components.toString();
+  return components;
 }
 
 function getLables(nlp: NLP) {
   const lables = getEntitymentions(nlp, EntityType.LABEL);
-  return lables.toString();
+  return lables;
 }
 
 function getWeight(nlp: NLP) {

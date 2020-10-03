@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import IssueElement from './components/IssueElement';
+import IssueElementTextArea from './components/IsuseElementTextArea';
+import ListSelection from './components/ListSelection';
+import { useIntegration } from './integrations/integrationAdapter';
 import Issue from './models/Issue';
 
 interface Props {
@@ -9,6 +12,13 @@ interface Props {
 }
 
 const IssueCard: React.FC<Props> = ({ issue, setIssue }) => {
+  const integration = useIntegration();
+
+  const handleSave = () => {
+    integration.createIssue(issue);
+    integration.getLabels();
+  };
+
   return (
     <IssueContainer>
       <Title>New Issue</Title>
@@ -17,26 +27,14 @@ const IssueCard: React.FC<Props> = ({ issue, setIssue }) => {
         value={issue.title}
         setElement={(e) => setIssue({ ...issue, title: e.target.value })}
       />
-      <IssueElement
-        name="Description"
-        value={issue.description}
-        setElement={(e) => setIssue({ ...issue, description: e.target.value })}
+      <IssueElementTextArea
+        name="Body"
+        value={issue.body}
+        setElement={(e) => setIssue({ ...issue, body: e.target.value })}
       />
-      <IssueElement
-        name="Assignee"
-        value={issue.assignee}
-        setElement={(e) => setIssue({ ...issue, assignee: e.target.value })}
-      />
-      <IssueElement
-        name="Components"
-        value={issue.components}
-        setElement={(e) => setIssue({ ...issue, components: e.target.value })}
-      />
-      <IssueElement
-        name="Labels"
-        value={issue.lables}
-        setElement={(e) => setIssue({ ...issue, lables: e.target.value })}
-      />
+      <ListSelection name="Components" elements={issue.components} />
+      <ListSelection name="Labels" elements={issue.labels} />
+      <ListSelection name="Assignees" elements={issue.assignees} />
       <IssueElement
         name="Weight"
         type="number"
@@ -45,7 +43,7 @@ const IssueCard: React.FC<Props> = ({ issue, setIssue }) => {
           setIssue({ ...issue, weight: parseInt(e.target.value) })
         }
       />
-      <SaveButton>Save</SaveButton>
+      <SaveButton onClick={handleSave}>Save</SaveButton>
     </IssueContainer>
   );
 };

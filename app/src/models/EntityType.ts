@@ -3,17 +3,18 @@ export type NoEntityType = typeof noEntityType;
 enum EntityType {
   NoEntityType = 'O',
   LABEL = 'LABEL',
-  LABEL_INTENT='LABEL_INTENT',
-  TITLE_INTENT= 'TITLE_INTENT',
-  ASSIGN_INTENT='ASSIGN_INTENT',
-  COMPONENT_INTENT='COMPONENT_INTENT',
-  COMPONENT='COMPONENT',
-  PERSON='PERSON',
-  WEIGHT_INTENT='WEIGHT_INTENT',
-  NUMBER='NUMBER',
+  LABEL_INTENT = 'LABEL_INTENT',
+  TITLE_INTENT = 'TITLE_INTENT',
+  ASSIGN_INTENT = 'ASSIGN_INTENT',
+  COMPONENT_INTENT = 'COMPONENT_INTENT',
+  COMPONENT = 'COMPONENT',
+  PERSON = 'PERSON',
+  WEIGHT_INTENT = 'WEIGHT_INTENT',
+  NUMBER = 'NUMBER',
+  PRIORITY = 'PRIORITY',
 }
 
-const blue = 'blue'
+const blue = 'blue';
 const yellow = 'hsl(52, 100%, 60%)';
 const red = 'hsl(0, 100%, 40%)';
 const green = 'green';
@@ -32,6 +33,7 @@ export const entityColors: { [key in EntityType]: string | undefined } = {
   COMPONENT_INTENT: purple,
   WEIGHT_INTENT: purple,
   NUMBER: green,
+  PRIORITY: red,
 };
 
 export default EntityType;
