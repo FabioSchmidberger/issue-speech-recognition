@@ -3,12 +3,12 @@ function matchToList(value: string, candidates: string[]) {
     candidate.toLowerCase().includes(value.toLowerCase()),
   );
 
-  if (matchingCandidates.length == 1) return matchingCandidates[0];
+  if (matchingCandidates.length === 1) return matchingCandidates[0];
 
   if (matchingCandidates.length > 1)
     return getClosestCandidate(value, matchingCandidates);
 
-  if (matchingCandidates.length == 0)
+  if (matchingCandidates.length === 0)
     return getClosestCandidate(value, candidates);
 
   return '';

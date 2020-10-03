@@ -24,6 +24,7 @@ function useNLP(text: string, isActive: boolean) {
           });
       })();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, isActive]);
   return {
     nlp,

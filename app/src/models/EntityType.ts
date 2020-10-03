@@ -12,6 +12,7 @@ enum EntityType {
   WEIGHT_INTENT = 'WEIGHT_INTENT',
   NUMBER = 'NUMBER',
   PRIORITY = 'PRIORITY',
+  PRIORITY_INTENT = 'PRIORITY_INTENT',
 }
 
 const blue = 'blue';
@@ -34,6 +35,7 @@ export const entityColors: { [key in EntityType]: string | undefined } = {
   WEIGHT_INTENT: purple,
   NUMBER: green,
   PRIORITY: red,
+  PRIORITY_INTENT: purple,
 };
 
 export default EntityType;

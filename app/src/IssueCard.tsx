@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import IssueElement from './components/IssueElement';
 import IssueElementTextArea from './components/IsuseElementTextArea';
@@ -74,18 +74,6 @@ const SaveButton = styled.button`
 
 const Title = styled.div`
   font-size: 25px;
-`;
-
-const ElementContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-`;
-
-const Label = styled.div`
-  font-size: 20px;
-  padding-right: 10px;
-  width: 150px;
 `;
 
 export default IssueCard;
