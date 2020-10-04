@@ -13,7 +13,7 @@ const ListSelection: React.FC<Props> = ({ name, elements }) => {
 
       <ElementsContainer>
         {elements.map((element) => (
-          <Element>{element}</Element>
+          <Element key={element}>{element}</Element>
         ))}
       </ElementsContainer>
     </ListContainer>
@@ -47,6 +47,7 @@ const Label = styled.div`
   font-size: 20px;
   padding-right: 10px;
   width: 150px;
+  font-weight: bold;
 `;
 
 export default ListSelection;

@@ -1,57 +1,38 @@
-import React, { useState } from 'react';
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from 'react-speech-recognition';
+import React from 'react';
 import styled from 'styled-components';
-import TextWithMarkings from './components/TextWithMarkings';
+import TextWithMarkings from './TextWithMarkings';
 import IssueCard from './IssueCard';
-import useIssueParser from './useIssueParser';
-import useNLP from './useNLP';
+import useIssueParser from '../nlp/useIssueParser';
+import useNLP from '../nlp/useNLP';
+import useSpeech from '../speech/useSpeech';
 
-const WebSpeech: React.FC = () => {
+const SpeechProcessing: React.FC = () => {
   const {
     transcript,
-    finalTranscript,
-    resetTranscript,
-  } = useSpeechRecognition();
-  const [isRecording, setIsRecording] = useState(false);
+    listening,
+    startRecording,
+    stopRecording,
+    resetSpeech,
+  } = useSpeech();
 
-  const shouldRunNlp = !isRecording && !!finalTranscript;
+  const shouldRunNlp = !listening && !!transcript;
   const { nlp, resetNlp } = useNLP(transcript, shouldRunNlp);
 
   const { issue, setIssue } = useIssueParser(nlp);
 
-  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-    return null;
-  }
-
-  const options = { continuous: true, language: 'en-US' };
-
-  const startRecording = () => {
-    SpeechRecognition.startListening(options);
-    setIsRecording(true);
-  };
-
-  const stopRecording = () => {
-    SpeechRecognition.stopListening();
-    setIsRecording(false);
-  };
-
   const reset = () => {
-    resetTranscript();
+    resetSpeech();
     resetNlp();
   };
+
+  console.log('Transcript: ' + transcript);
 
   return (
     <Content>
       <SpeechContainer>
-        <TextWithMarkings
-          text={transcript}
-          nlp={nlp}
-          isRecording={isRecording}
-        />
+        <TextWithMarkings text={transcript} nlp={nlp} isRecording={listening} />
         <div>
-          {!isRecording ? (
+          {!listening ? (
             <StartButton onClick={startRecording}>Start Recording</StartButton>
           ) : (
             <StopButton onClick={stopRecording}>Stop Recording</StopButton>
@@ -97,4 +78,4 @@ const SpeechContainer = styled.div`
   align-items: center;
 `;
 
-export default WebSpeech;
+export default SpeechProcessing;

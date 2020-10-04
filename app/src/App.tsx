@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import SettingsScreen from './components/SettingsScreen';
 import { useIssueElementsImporter } from './integrations/useIssueElementsImporter';
-import WebSpeech from './WebSpeech';
+import SpeechProcessing from './components/SpeechProcessing';
 
 const App: React.FC = () => {
   useIssueElementsImporter();
@@ -12,9 +12,7 @@ const App: React.FC = () => {
       <SettingsScreen />
       <Content>
         <Header>Issue Speech Recognition</Header>
-
-        {/*<SpeechClass text={text} setText={setText} nlp={nlp} setNlp={setNlp}/>*/}
-        <WebSpeech />
+        <SpeechProcessing />
         <Footer>BA - Fabio Schmidberger</Footer>
       </Content>
     </AppContainer>

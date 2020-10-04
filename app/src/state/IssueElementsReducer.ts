@@ -12,6 +12,7 @@ export const initialState = {
     labels: [],
     assignees: [],
     components: [],
+    priorities: [],
   },
 };
 
@@ -42,6 +43,14 @@ function IssueElementsReducer(
         elements: {
           ...state.elements,
           components: reduxAction.components,
+        },
+      };
+    case 'SET_PRIORITIES':
+      return {
+        ...state,
+        elements: {
+          ...state.elements,
+          priorities: reduxAction.priorities,
         },
       };
     default:

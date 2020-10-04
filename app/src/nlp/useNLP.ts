@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
-import NLP from './models/NLP';
+import NLP from './../models/NLP';
 
 function useNLP(text: string, isActive: boolean) {
   const [nlp, setNlp] = useState<NLP | null>(null);

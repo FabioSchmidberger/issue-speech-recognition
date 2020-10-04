@@ -47,6 +47,7 @@ const Label = styled.div`
   font-size: 20px;
   padding-right: 10px;
   width: 150px;
+  font-weight: bold;
 `;
 
 export default IssueElement;

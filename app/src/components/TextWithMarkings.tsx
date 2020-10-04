@@ -40,7 +40,7 @@ const TextContainer = styled.div`
   font-size: 30px;
   padding: 50px;
   margin: 20px;
-  width: 500px;
+  width: 700px;
   min-height: 400px;
   line-height: 2;
   border-radius: 20px;
@@ -51,7 +51,7 @@ const NlpTextContainer = styled.div`
   font-size: 30px;
   padding: 50px;
   margin: 20px;
-  width: 500px;
+  width: 700px;
   min-height: 400px;
   border-radius: 20px;
   background-color: hsl(200, 10%, 95%);

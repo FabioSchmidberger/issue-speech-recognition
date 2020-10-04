@@ -4,6 +4,7 @@ import { GithubOptions } from '../state/settingsReducer';
 import AbstractIntegrationAdapter from './AbstractIntegrationAdapter';
 
 class GithubAdapter extends AbstractIntegrationAdapter {
+  public name = 'GITHUB';
   private octokit: Octokit;
   private owner: string;
   private repo: string;
@@ -36,6 +37,23 @@ class GithubAdapter extends AbstractIntegrationAdapter {
       })
       .then((response) => response.data.map((label) => label.name))
       .catch((e) => console.log(e));
+  }
+
+  public async getComponents(): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+      return resolve([
+        'Payment-Service',
+        'Auth-Service',
+        'Loggin-Service',
+        'Frontend-Servic',
+      ]);
+    });
+  }
+
+  public async getPriorities(): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+      return resolve(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']);
+    });
   }
 
   public async getAssignees() {

@@ -38,6 +38,7 @@ const SettingsScreen: React.FC = () => {
                     })
                   }
                   isSelected={speechOption === speechEngine}
+                  disabled={speechOption === SpeechEngine.DEEPSPEECH}
                 >
                   {speechOption}
                 </SelectionElement>

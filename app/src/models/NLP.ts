@@ -17,10 +17,6 @@ export interface CoreEntityMention {
 }
 
 export interface CoreSentence {
-  nerTags: string[];
-  posTags: string[];
-  sentiment: string;
-  text: string;
   tokens: Token[];
   entitymentions: CoreEntityMention[];
 }
