@@ -10,7 +10,7 @@ const postProcessText = (text: string) => {
 };
 
 const replaceWords = (text: string) => {
-  return text.replace(/a sign/g, 'assign').replace(/labours/g, 'labels');
+  return text.replace(/[A|a] sign/g, 'assign').replace(/labours/g, 'labels');
 };
 
 const replacePunctuation = (text: string) => {

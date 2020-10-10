@@ -20,7 +20,7 @@ export enum IssueIntegration {
 
 export const initialState: State = {
   speechEngine: SpeechEngine.GOOGLE,
-  issueIntegration: IssueIntegration.GITHUB,
+  issueIntegration: IssueIntegration.CCIMS,
   githubOptions: {
     repo: '',
     owner: '',

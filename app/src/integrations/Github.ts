@@ -44,8 +44,8 @@ class GithubAdapter extends AbstractIntegrationAdapter {
       return resolve([
         'Payment-Service',
         'Auth-Service',
-        'Loggin-Service',
-        'Frontend-Servic',
+        'Logging-Service',
+        'Frontend-Service',
       ]);
     });
   }

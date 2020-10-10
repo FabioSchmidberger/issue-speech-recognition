@@ -16,11 +16,11 @@ enum EntityType {
 }
 
 const blue = 'blue';
-const yellow = 'hsl(52, 100%, 60%)';
+const yellow = 'hsl(52, 100%, 50%)';
 const red = 'hsl(0, 100%, 40%)';
 const green = 'green';
-const orange = 'hsl(37, 100%, 78%)';
-const purple = 'hsl(310, 100%, 85%)';
+const orange = 'hsl(37, 100%, 55%)';
+const purple = 'hsl(310, 100%, 70%)';
 const black = 'black';
 
 export const entityColors: { [key in EntityType]: string | undefined } = {
