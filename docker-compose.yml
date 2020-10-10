@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  frontend-proxy:
+    build: frontend-proxy
+    restart: unless-stopped
+    volumes:
+      - certificates:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - APP_HOST_NAME=${APP_HOST}
+      - NLP_HOST_NAME=${NLP_HOST}
+      - SSL_CERTIFICATE_NAME=issues.fabioschmidberger.de
+    depends_on:
+      - app
+      - nlp
+  app:
+    build:
+      context: app
+      args:
+        REACT_APP_NLP_URL: https://${NLP_HOST}
+        REACT_APP_BASENAME: /
+        PUBLIC_URL: https://${APP_HOST}
+    restart: unless-stopped
+  nlp:
+    restart: unless-stopped
+    build:
+        context: nlp/corenlpApi
+    ports:
+      - "8080:8080"
+
+volumes:
+  certificates:
