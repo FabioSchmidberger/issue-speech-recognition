@@ -5,6 +5,7 @@ import IssueElementTextArea from './IsuseElementTextArea';
 import ListSelection from './ListSelection';
 import { useIntegration } from '../integrations/integrationAdapter';
 import Issue from '../models/Issue';
+import { useIssueElementLists } from '../state/IssueElementsReducer';
 
 interface Props {
   issue: Issue;
@@ -13,6 +14,7 @@ interface Props {
 
 const IssueCard: React.FC<Props> = ({ issue, setIssue }) => {
   const integration = useIntegration();
+  const issueElementLists = useIssueElementLists();
 
   const handleSave = () => {
     integration.createIssue(issue);
@@ -32,10 +34,34 @@ const IssueCard: React.FC<Props> = ({ issue, setIssue }) => {
         value={issue.body}
         setElement={(e) => setIssue({ ...issue, body: e.target.value })}
       />
-      <ListSelection name="Components" elements={issue.components} />
-      <ListSelection name="Labels" elements={issue.labels} />
-      <ListSelection name="Assignees" elements={issue.assignees} />
-      <ListSelection name="Priority" elements={issue.priority} />
+      <ListSelection
+        name="Components"
+        selectedElements={issue.components}
+        availableElements={issueElementLists.components}
+        setElements={(components) =>
+          setIssue({ ...issue, components: components })
+        }
+      />
+      <ListSelection
+        name="Labels"
+        selectedElements={issue.labels}
+        availableElements={issueElementLists.labels}
+        setElements={(labels) => setIssue({ ...issue, labels: labels })}
+      />
+      <ListSelection
+        name="Assignees"
+        selectedElements={issue.assignees}
+        availableElements={issueElementLists.assignees}
+        setElements={(assignees) =>
+          setIssue({ ...issue, assignees: assignees })
+        }
+      />
+      <ListSelection
+        name="Priority"
+        selectedElements={issue.priority}
+        availableElements={issueElementLists.priorities}
+        setElements={(priority) => setIssue({ ...issue, priority: priority })}
+      />
       <IssueElement
         name="Weight"
         type="number"

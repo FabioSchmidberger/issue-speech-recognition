@@ -1,4 +1,5 @@
 function matchToList(value: string, candidates: string[]) {
+  if (!candidates) return '';
   const matchingCandidates = candidates.filter((candidate) =>
     candidate.toLowerCase().includes(value.toLowerCase()),
   );

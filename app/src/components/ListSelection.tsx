@@ -1,34 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
+import AddElement from './AddElement';
+import Element from './Element';
 
 interface Props {
   name: string;
-  elements: string[];
+  selectedElements: string[];
+  setElements: (elements: string[]) => void;
+  availableElements: string[];
 }
 
-const ListSelection: React.FC<Props> = ({ name, elements }) => {
+const ListSelection: React.FC<Props> = ({
+  name,
+  selectedElements,
+  setElements,
+  availableElements,
+}) => {
+  if (!availableElements) return null;
+
+  const deleteElement = (elementToDelete: string) => {
+    setElements(
+      selectedElements.filter((element) => element != elementToDelete),
+    );
+  };
+
+  const addElement = (elementToAdd: string) => {
+    setElements([...selectedElements, elementToAdd]);
+  };
+
+  const optionsToAdd = availableElements.filter(
+    (element) => !selectedElements.includes(element),
+  );
+
   return (
     <ListContainer>
       <Label>{name}</Label>
-
       <ElementsContainer>
-        {elements.map((element) => (
-          <Element key={element}>{element}</Element>
+        {selectedElements.map((element) => (
+          <Element key={element} name={element} onDelete={deleteElement} />
         ))}
+        <AddElement onAdd={addElement} options={optionsToAdd} />
       </ElementsContainer>
     </ListContainer>
   );
 };
-
-const Element = styled.div`
-  font-size: 20px;
-  padding: 5px 10px;
-  border-width: 0px;
-  color: black;
-  border-radius: 5px;
-  background-color: lightblue;
-  margin-right: 5px;
-`;
 
 const ListContainer = styled.div`
   display: flex;
@@ -40,6 +55,7 @@ const ListContainer = styled.div`
 const ElementsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 `;
 

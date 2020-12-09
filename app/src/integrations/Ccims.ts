@@ -40,7 +40,7 @@ class CcimsAdapter extends AbstractIntegrationAdapter {
         'Payment-Service',
         'Auth-Service',
         'Loggin-Service',
-        'Frontend-Servic',
+        'Frontend-Service',
       ]);
     });
   }
