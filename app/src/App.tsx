@@ -9,12 +9,12 @@ const App: React.FC = () => {
 
   return (
     <AppContainer>
-      <SettingsScreen />
       <Content>
         <Header>Issue Speech Recognition</Header>
         <SpeechProcessing />
         <Footer>BA - Fabio Schmidberger</Footer>
       </Content>
+      <SettingsScreen />
     </AppContainer>
   );
 };
@@ -24,6 +24,10 @@ const AppContainer = styled.div`
   flex-direction: row;
   height: 100%;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Content = styled.div`

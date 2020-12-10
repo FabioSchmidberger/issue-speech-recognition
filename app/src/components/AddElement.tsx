@@ -14,7 +14,15 @@ const AddElement: React.FC<Props> = ({ options, onAdd }) => {
 
   return (
     <Container>
-      {shouldDisplayOptions && <Options options={options} addOption={onAdd} />}
+      {shouldDisplayOptions && (
+        <Options
+          options={options}
+          addOption={(option) => {
+            onAdd(option);
+            setshouldDisplayOptions(false);
+          }}
+        />
+      )}
       <RiAddFill
         onClick={() => setshouldDisplayOptions(!shouldDisplayOptions)}
       />

@@ -45,6 +45,11 @@ const TextContainer = styled.div`
   line-height: 2;
   border-radius: 20px;
   background-color: hsl(200, 10%, 95%);
+
+  @media (max-width: 768px) {
+    width: 300px;
+    min-height: 200px;
+  }
 `;
 
 const NlpTextContainer = styled.div`

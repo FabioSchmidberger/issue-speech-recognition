@@ -11,7 +11,11 @@ import GithubIntegrationOptions from './GithubIntegrationOptions';
 
 const speechOptions = [SpeechEngine.GOOGLE, SpeechEngine.DEEPSPEECH];
 
-const integrationOptions = [IssueIntegration.GITHUB, IssueIntegration.CCIMS];
+const integrationOptions = [
+  IssueIntegration.GITHUB,
+  IssueIntegration.CCIMS,
+  IssueIntegration.NOOP,
+];
 
 const SettingsScreen: React.FC = () => {
   const dispatch = useDispatch();

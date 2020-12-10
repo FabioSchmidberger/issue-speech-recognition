@@ -48,6 +48,9 @@ const SpeechProcessing: React.FC = () => {
 const Content = styled.div`
   display: flex;
   flex-direction: row;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Button = styled.button`

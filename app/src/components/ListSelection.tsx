@@ -50,6 +50,10 @@ const ListContainer = styled.div`
   flex-direction: row;
   align-items: center;
   margin-top: 15px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const ElementsContainer = styled.div`

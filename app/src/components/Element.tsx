@@ -22,23 +22,24 @@ const Element: React.FC<Props> = ({ name, onDelete }) => {
 
 const CloseIcon = styled.div`
   position: relative;
-  top: 20px;
+  top: -10px;
   right: 0px;
   font-size: 20px;
+  padding: 0px;
 `;
 
 const Text = styled.div`
   font-size: 20px;
+`;
+
+const Container = styled.div`
   padding: 5px 10px;
   border-width: 0px;
   color: black;
   border-radius: 5px;
   background-color: lightblue;
   margin-right: 5px;
-`;
-
-const Container = styled.div`
-  padding-top: 0px;
+  line-height: 1;
 `;
 
 export default Element;
