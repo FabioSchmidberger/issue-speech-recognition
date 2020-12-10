@@ -16,6 +16,7 @@ export enum SpeechEngine {
 export enum IssueIntegration {
   GITHUB = 'GITHUB',
   CCIMS = 'CCIMS',
+  NOOP = 'NOOP',
 }
 
 export const initialState: State = {
