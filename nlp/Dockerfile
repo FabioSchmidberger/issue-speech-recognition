@@ -32,7 +32,7 @@ FROM tomcat:jdk8-openjdk as production-stage
 # Copy source files to tomcat folder structure
 
 COPY --from=war-builder /build/target/* /usr/local/tomcat/webapps/api/
-COPY --from=corenlp-builder /build/ner.model.ser.props /usr/local/models/
+COPY --from=corenlp-builder /build/ner.model.ser.gz /usr/local/models/
 
 # Serve Tomcat
 EXPOSE 8080
