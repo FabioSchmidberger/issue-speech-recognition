@@ -27,7 +27,7 @@ public class CorenlpServelet extends HttpServlet {
 		
 		Properties props = new Properties();
 	    // set the list of annotators to run
-	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse");
+	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
 	    // set a property for an annotator, in this case the coref annotator is being set to use the neural algorithm
 	    props.setProperty("coref.algorithm", "neural");
 	    props.setProperty("ner.model", "/usr/local/models/ner.model.ser.gz");
@@ -40,7 +40,7 @@ public class CorenlpServelet extends HttpServlet {
 	    // examples
 	    
 	    response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
+      response.addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
 		
 		if (text != null) {
 			String jsonResult="";
