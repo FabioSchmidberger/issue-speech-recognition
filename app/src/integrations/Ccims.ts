@@ -44,7 +44,7 @@ class CcimsAdapter extends AbstractIntegrationAdapter {
 
   public async getLabels(): Promise<string[]> {
     const query = `
-    query GetLabels($projectId: ID!) {
+    query getLabels($projectId: ID!) {
       node(id: $projectId) {
         ... on Project {
           labels {
@@ -60,13 +60,13 @@ class CcimsAdapter extends AbstractIntegrationAdapter {
 
     try {
       const data = await request(`${this.api}`, query, { projectId: 0 });
-
       console.log(data);
-      if()
+      if (data && data.node && data.node.labels && data.node.labels.nodes)
+        return data.node.labels.nodes;
     } catch (error) {
       throw new Error(error);
     }
-
+    // backup values
     return new Promise((resolve, reject) => {
       return resolve([
         'bug',
@@ -108,9 +108,17 @@ class CcimsAdapter extends AbstractIntegrationAdapter {
     try {
       const data = await request(`${this.api}`, query, { projectId: 0 });
       console.log(data);
+      if (
+        data &&
+        data.node &&
+        data.node.components &&
+        data.node.components.nodes
+      )
+        return data.node.components.nodes;
     } catch (error) {
       throw new Error(error);
     }
+    //backup values
     return new Promise((resolve, reject) => {
       return resolve([
         'Payment-Service',

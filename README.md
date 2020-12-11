@@ -9,7 +9,29 @@ The application is currently deployed under https://issues.fabioschmidberger.de.
 Here you can try it out yourself and experiment with the speech recognition. In the settings menu you can connect your personal Github repositories or a Gropius system.
 The deployed version will be available at least until 31.03.2021.
 
-## Overview
+## User Guide
+
+Simply Press the Start Recording Button and speak freely into the system. The following showes some examples that can be said:
+
+### Example Text
+
+- Bug in database binding. add labels bug and prio high. assign Fabio. the weight is 4
+- Titlebar should be green in the Component frontend. add labels design and assign Jake.
+- Create Backup script for Mongo database, assign Leon. The priority is high
+- Add SSO Support to backend and frontend components. Add the labels user story, and feature request Assign Fabio
+- Change the color of the registration button in the component frontend, assign Max. The priority is low.
+- Add a monitoring system to our server. The administrators should receive notifications if we have issues. This is for components payment-service and logging. Assign Fabio, add labels enhancement. The weight is 7 and the priority is high.
+- The login button is hidden on the mobile page. Add the labels bug and UI. The components are frontend. Assign Jake. The priority is high and the weight is 3.
+
+### Integrations
+
+#### Github
+
+You need to add your repo name, user name and a personal access token.
+
+#### Gropius / CCIMS
+
+This API was not tested in a production environment. The system you connect to it should have authentication disabled/ be in a dev mode.
 
 ### App
 
@@ -79,22 +101,6 @@ https://stanfordnlp.github.io/CoreNLP/tutorials.html
 https://nlp.stanford.edu/software/crf-faq.html
 
 https://thoughtbot.com/blog/named-entity-recognition
-
-### Example Text
-
-- Bug in database binding. add labels bug and prio high. assign Fabio. the weight is 4
-- Titlebar should be green in the Component frontend. add labels design and assign Jake.
-- Create Backup script for Mongo database, assign Leon. The priority is high
-
-- Add SSO Support to backend and frontend components. Add the labels user story, and feature request Assign Fabio
-
-- Change the color of the registration button in the component frontend, assign Max. The priority is low.
-- Add a monitoring system to our server. The administrators should receive notifications if we have issues. This is for components payment-service and logging. Assign Fabio, add labels enhancement. The weight is 7 and the priority is high.
-- The login button is hidden on the mobile page. Add the labels bug and UI. The components are frontend. Assign Jake. The priority is high and the weight is 3.
-
-## Integrations
-
-### Github
 
 # Issues
 
