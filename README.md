@@ -82,7 +82,7 @@ https://thoughtbot.com/blog/named-entity-recognition
 
 ### Example Text
 
-- Bug in database binding. add labels bug and prio high. assign Peter. the weight is 4
+- Bug in database binding. add labels bug and prio high. assign Fabio. the weight is 4
 - Titlebar should be green in the Component frontend. add labels design and assign Jake.
 - Create Backup script for Mongo database, assign Leon. The priority is high
 
@@ -95,12 +95,6 @@ https://thoughtbot.com/blog/named-entity-recognition
 ## Integrations
 
 ### Github
-
-https://developer.github.com/v3/issues/#create-an-issue
-
-const PERSONAL_ACCESS_TOKEN = '3ab1627652c24972dc7ca525885fa9943af7733f';
-const owner = 'FabioSchmidberger';
-const repo = 'se_172_enterprise_software_assignments';
 
 # Issues
 

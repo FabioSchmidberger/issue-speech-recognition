@@ -43,22 +43,30 @@ class CcimsAdapter extends AbstractIntegrationAdapter {
   }
 
   public async getLabels(): Promise<string[]> {
-    /*
-    export const GetLabelsDocument = gql`
+    const query = `
     query GetLabels($projectId: ID!) {
-  node(id: $projectId) {
-    ... on Project {
-      labels {
-        nodes {
-          id
-          name
-          color
+      node(id: $projectId) {
+        ... on Project {
+          labels {
+            nodes {
+              id
+              name
+              color
+            }
+          }
         }
       }
+    }`;
+
+    try {
+      const data = await request(`${this.api}`, query, { projectId: 0 });
+
+      console.log(data);
+      if()
+    } catch (error) {
+      throw new Error(error);
     }
-  }
-}
-  */
+
     return new Promise((resolve, reject) => {
       return resolve([
         'bug',
@@ -83,6 +91,26 @@ class CcimsAdapter extends AbstractIntegrationAdapter {
   }
 
   public async getComponents(): Promise<string[]> {
+    const query = `
+    query GetComponents($projectId: ID!) {
+      node(id: $projectId) {
+        ... on Project {
+          components {
+            nodes {
+              id
+              name
+            }
+          }
+        }
+      }
+    }`;
+
+    try {
+      const data = await request(`${this.api}`, query, { projectId: 0 });
+      console.log(data);
+    } catch (error) {
+      throw new Error(error);
+    }
     return new Promise((resolve, reject) => {
       return resolve([
         'Payment-Service',
