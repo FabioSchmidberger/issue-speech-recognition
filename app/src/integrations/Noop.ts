@@ -14,11 +14,12 @@ class NoopAdapter extends AbstractIntegrationAdapter {
     return new Promise((resolve, reject) => {
       return resolve([
         'bug',
-        'userstory',
+        'documentation',
+        'user story',
         'feature',
         'question',
         'enhancement',
-        'good first issue',
+        'design',
       ]);
     });
   }
@@ -29,7 +30,9 @@ class NoopAdapter extends AbstractIntegrationAdapter {
         'Fabio Schmidberger',
         'Erik Master',
         'Max Muster',
-        'Sandro Speth',
+        'Marcel Architect',
+        'Stephen Musk',
+        'Maria Schnell',
         'Jake Coder',
       ]);
     });
@@ -39,6 +42,8 @@ class NoopAdapter extends AbstractIntegrationAdapter {
     return new Promise((resolve, reject) => {
       return resolve([
         'Payment-Service',
+        'Frontend',
+        'API',
         'Auth-Service',
         'Logging-Service',
         'Frontend-Service',

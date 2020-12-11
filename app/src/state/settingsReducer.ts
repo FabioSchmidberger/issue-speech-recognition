@@ -35,6 +35,10 @@ export interface GithubOptions {
   personalAccessToken: string;
 }
 
+export interface CcimsOptions {
+  api: string;
+}
+
 function settingsReducer(
   state: State = initialState,
   reduxAction: ReduxAnyAction,

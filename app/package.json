@@ -22,6 +22,8 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "defaults": "^1.0.3",
+    "graphql": "^15.4.0",
+    "graphql-request": "^3.3.0",
     "lodash": "^4.17.20",
     "mocha": "^6.1.4",
     "opus-recorder": "^6.1.1",
