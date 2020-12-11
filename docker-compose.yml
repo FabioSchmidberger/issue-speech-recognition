@@ -20,14 +20,14 @@ services:
     build:
       context: app
       args:
-        REACT_APP_NLP_URL: https://${NLP_HOST}
+        REACT_APP_NLP_URL: https://${NLP_HOST}/api/corenlp
         REACT_APP_BASENAME: /
         PUBLIC_URL: https://${APP_HOST}
     restart: unless-stopped
   nlp:
     restart: unless-stopped
     build:
-        context: nlp/corenlpApi
+        context: nlp
     ports:
       - "8080:8080"
 

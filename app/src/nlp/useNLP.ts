@@ -5,7 +5,8 @@ import NLP from './../models/NLP';
 function useNLP(text: string, isActive: boolean) {
   const [nlp, setNlp] = useState<NLP | null>(null);
 
-  const baseURL = process.env.REACT_APP_NLP_API || 'http://localhost:8080/api/corenlp';
+  const baseURL =
+    process.env.REACT_APP_NLP_URL || 'http://localhost:8080/api/corenlp';
 
   const api = Axios.create({ baseURL });
 

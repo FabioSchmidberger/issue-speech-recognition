@@ -4,7 +4,10 @@ ISA is a speech assistant for issue creation. With ISA product owners and develo
 
 ISA was developed as part of a Bachelor's Thesis at the University of Stuttgart.
 
-The Application is currently deplodey under
+The application is currently deployed under https://issues.fabioschmidberger.de.
+
+Here you can try it out yourself and experiment with the speech recognition. In the settings menu you can connect your personal Github repositories or a Gropius system.
+The deployed version will be available at least until 31.03.2021.
 
 ## Overview
 
@@ -34,25 +37,14 @@ cd app
 yarn start
 ```
 
-Build CoreNLP Model
-
-```
-cd nlp
-./build-model.sh
-```
-
-Build CoreNLP API war
-
-```
-
-```
-
 Start CoreNLP API
 
 ```
-cd nlp/corenlpApi
+cd nlp
 docker-compose up
 ```
+
+This command runs a 3 stage docker build where the nlp model is build, the war file of the HttpServelet is build and the results are then assembled in a production container which is started.
 
 ## Deployment
 
@@ -62,52 +54,43 @@ The application can be easily deployed by running the following command:
 ./deploy.sh
 ```
 
-## NLP
+The `.env` file needs to be configured.
+
+### Host
+
+For the deployment a ubuntu 20.04 VM with docker-compose is used.
+
+Run the following on the server to allow more ssh connections, which is required for docker-compose:
+
+`echo "MaxSessions 500" >> /etc/ssh/sshd_config`
+
+### Let's Encrypt Certs
+
+`./certbot certonly --manual -d 'issues.fabioschmidberger.de' -d '*.issues.fabioschmidberger.de' --preferred-challenges dns`
+
+## Additional Readings / Resources
 
 ### Cornlp
 
 https://stanfordnlp.github.io/CoreNLP/tutorials.html
 
-### Java Project
-
-use gradle clean package to build war files
-
-http://localhost:8080/api/corenlp?text="test"
-
-### Training Data
+#### Training Data
 
 https://nlp.stanford.edu/software/crf-faq.html
 
 https://thoughtbot.com/blog/named-entity-recognition
 
-### Training Data GEN
-
-- have training sentices
-- tokenize and pre lable with predicted entity classes from current model
-- then just fix up errors
-
 ### Example Text
 
-- create new issue with title bug in database binding. add labels bug and prio high. assign Peter. the weight is 4
+- Bug in database binding. add labels bug and prio high. assign Peter. the weight is 4
+- Titlebar should be green in the Component frontend. add labels design and assign Jake.
+- Create Backup script for Mongo database, assign Leon. The priority is high
 
-- Titlebar should be green, add lables design and assign Jake
-- Create Backup script for Mongo db, assign Leon
+- Add SSO Support to backend and frontend components. Add the labels user story, and feature request Assign Fabio
 
-- Create a new issue for the component backend with the title:
-  Add SSO Support Add the labels user story, and feature request Assign
-  Fabio
-
-- Change the color of the registration button in the component frontend, assign Max
-
-- Add a monitoring system to our server. The administrators should receive notifications if we have issues. This is for components payment-service and auth-service. Assign Fabio, add labels enhancement. The weight is 7 and the priority is high.
-
-- The login button is hidden on the mobile page. Add the labels bug and UI. The components are frontend. Assign Jake.
-
-## Speech
-
-### Kaldi
-
-https://github.com/jcsilva/docker-kaldi-gstreamer-server
+- Change the color of the registration button in the component frontend, assign Max. The priority is low.
+- Add a monitoring system to our server. The administrators should receive notifications if we have issues. This is for components payment-service and logging. Assign Fabio, add labels enhancement. The weight is 7 and the priority is high.
+- The login button is hidden on the mobile page. Add the labels bug and UI. The components are frontend. Assign Jake. The priority is high and the weight is 3.
 
 ## Integrations
 
@@ -121,31 +104,20 @@ const repo = 'se_172_enterprise_software_assignments';
 
 # Issues
 
-## Lables
+## Labels
 
-bug, documentation, duplicate, enhancement, good first issue, help wanted, invalid, question, won't fix
+- bug
+- documentation
+- enhancement
+- question
+- user story
+- design
+- feature
 
-at
-the
-labours
-design
+## Components
 
-## Deployment
-
-For the deployment a ubuntu 20.04 VM with docker-compose is used.
-
-Run the following on the server to allow more ssh connections, which is required for docker-compose:
-
-`echo "MaxSessions 500" >> /etc/ssh/sshd_config`
-
-### Let's Encrypt Certs
-
-`./certbot certonly --manual -d 'issues.fabioschmidberger.de' -d '*.issues.fabioschmidberger.de' --preferred-challenges dns`
-
-## components
-
-Have service as second part of their name
-
-# Thesis Notes
-
-Recognition Pipeline: trigram Matching
+- frontend
+- backend
+- logging
+- payment
+- api
