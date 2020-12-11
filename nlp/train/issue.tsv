@@ -3,7 +3,7 @@ Fabio   PERSON
 
 Add O
 the O
-lables LABLE_INTENT
+labels LABEL_INTENT
 authentication LABEL
 , O
 user LABEL
@@ -13,7 +13,7 @@ prio LABEL
 high LABEL
 
 
-LABEL LABLE_INTENT
+LABEL LABEL_INTENT
 with O
 frontend LABEL
 , O
@@ -50,6 +50,14 @@ assign ASSIGN_INTENT
 Julia PERSON
 Roberts PERSON
 
+in O
+component COMPONENT_INTENT
+api COMPONENT
+
+for O
+the O
+api COMPONENT
+component COMPONENT_INTENT
 
 the O
 weight WEIGHT_INTENT
@@ -67,7 +75,7 @@ issue O
 weight WEIGHT_INTENT
 is O
 4 NUMBER
-lables LABLE_INTENT
+labels LABEL_INTENT
 are O
 app LABEL
 and O
@@ -77,14 +85,14 @@ improve O
 bloodsugar O
 measure O
 with O
-lables LABLE_INTENT
+labels LABEL_INTENT
 feature LABEL
 
 
 redesign O
 admin O
 frontend O
-lables LABLE_INTENT
+labels LABEL_INTENT
 are O
 app LABEL
 weight WEIGHT_INTENT
@@ -103,7 +111,7 @@ one O
 error O
 in O
 picker O
-lables LABLE_INTENT
+labels LABEL_INTENT
 are O
 prio LABEL
 high LABEL
@@ -122,8 +130,9 @@ bug O
 in O
 database O
 binding O
+. O
 add O
-labels LABLE_INTENT
+labels LABEL_INTENT
 bug LABEL
 and O
 prio LABEL
@@ -134,3 +143,42 @@ the O
 weight WEIGHT_INTENT
 is O
 4 NUMBER
+
+increase O
+the O
+pipeline O
+speed O
+for O
+components COMPONENT_INTENT
+backend COMPONENT
+. O
+the O
+assignee ASSIGN_INTENT
+is O
+Max PERSON
+. O
+
+a O
+sign ASSIGN_INTENT
+Gorge PERSON
+
+increase O
+the O
+pipeline O
+speed O
+in O
+component COMPONENT_INTENT
+api COMPONENT
+. O
+
+
+with O
+weight WEIGHT_INTENT
+seven NUMBER
+. O
+
+assign ASSIGN_INTENT
+it O
+to O
+Fabio PERSON
+

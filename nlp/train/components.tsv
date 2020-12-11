@@ -1,0 +1,10 @@
+for O
+components COMPONENT_INTENT
+payment-service COMPONENT
+
+this O
+impacts O
+components COMPONENT_INTENT
+logging COMPONENT
+and O
+payment COMPONENT

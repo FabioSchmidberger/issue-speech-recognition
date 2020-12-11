@@ -9,11 +9,12 @@ Support O
 assign  ASSIGN_INTENT
 Fabio PERSON
 add     O
-lables  LABLE_INTENT
-authentication LABLE
+labels  LABEL_INTENT
+authentication LABEL
 and O
-prio LABLE
-high LABLE
+prio PRIORITY_INTENT
+is O
+high PRIORITY
 for O
 component COMPONENT_INTENT
 api COMPONENT

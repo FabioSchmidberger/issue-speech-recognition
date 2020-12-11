@@ -1,0 +1,41 @@
+server {
+    listen 80 default_server;
+    server_name ${APP_HOST_NAME} _;
+
+    return 301 https://${APP_HOST_NAME};
+}
+
+server {
+    listen 443 ssl http2 default_server;
+    server_name _;
+
+    ssl_certificate /etc/letsencrypt/live/${SSL_CERTIFICATE_NAME}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${SSL_CERTIFICATE_NAME}/privkey.pem;
+
+    return 301 https://${APP_HOST_NAME};
+}
+
+server {
+    listen 443 ssl http2;
+    server_name ${APP_HOST_NAME};
+
+    ssl_certificate /etc/letsencrypt/live/${SSL_CERTIFICATE_NAME}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${SSL_CERTIFICATE_NAME}/privkey.pem;
+
+    location / {
+        proxy_pass http://app/;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name  ${NLP_HOST_NAME};
+
+    ssl_certificate /etc/letsencrypt/live/${SSL_CERTIFICATE_NAME}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${SSL_CERTIFICATE_NAME}/privkey.pem;
+
+    location / {
+        proxy_pass http://nlp:8080/;
+    }
+}
+

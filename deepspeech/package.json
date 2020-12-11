@@ -1,0 +1,23 @@
+{
+  "name": "web-microphone-websocket",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "deepspeech": "^0.8.0",
+    "node-vad": "^1.1.4",
+    "should": "^13.2.3",
+    "should-http": "^0.1.1",
+    "socket.io": "^2.3.0",
+    "typescript": "^4.0.3"
+  },
+  "scripts": {
+    "server": "ts-node-dev --respawn server.ts",
+    "models": "wget https://github.com/mozilla/DeepSpeech/releases/download/v0.8.0/deepspeech-0.8.0-models.pbmm && wget https://github.com/mozilla/DeepSpeech/releases/download/v0.8.0/deepspeech-0.8.0-models.scorer"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.4.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/socket.io": "^2.1.8",
+    "ts-node-dev": "^1.0.0-pre.44"
+  }
+}
