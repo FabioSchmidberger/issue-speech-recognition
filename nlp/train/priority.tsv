@@ -37,3 +37,8 @@ the O
 priority PRIORITY_INTENT
 is O
 medium PRIORITY
+
+the O
+prio PRIORITY_INTENT
+is O
+critical PRIORITY

@@ -2,3 +2,22 @@ assign ASSIGN_INTENT
 Fabio PERSON
 and O
 Jake PERSON
+
+Max PERSON
+is O
+responsible ASSIGN_INTENT
+
+Marcel PERSON
+should O
+be O
+assigned ASSIGN_INTENT
+
+assign ASSIGN_INTENT
+Sandro PERSON
+
+assign ASSIGN_INTENT
+Leon PERSON
+
+assign ASSIGN_INTENT
+Steffen PERSON
+
