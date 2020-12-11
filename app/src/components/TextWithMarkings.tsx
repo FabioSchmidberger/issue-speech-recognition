@@ -49,6 +49,8 @@ const TextContainer = styled.div`
   @media (max-width: 768px) {
     width: 300px;
     min-height: 200px;
+    font-size: 20px;
+    padding: 10px;
   }
 `;
 
@@ -64,6 +66,13 @@ const NlpTextContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
+
+  @media (max-width: 768px) {
+    width: 300px;
+    min-height: 200px;
+    font-size: 20px;
+    padding: 10px;
+  }
 `;
 
 const TokenContainer = styled.div`
